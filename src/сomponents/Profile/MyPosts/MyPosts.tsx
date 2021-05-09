@@ -1,14 +1,14 @@
 import React, { ChangeEvent } from 'react';
-import { PostsType } from './/..//..//..//redux/state';
+import { ActionType, addPostAC, changeNewTextAC, PostsType} from './/..//..//..//redux/state';
 import s from './MyPosts.module.css';
 import { Post } from './Post/Post';
 
 
 type PropsType = {
     state: Array<PostsType>
-    addPost: (newPostText: string) => void
-    newPostText: string
-    updateNewPostText: (newText: string) => void
+    newPostText: string 
+    dispatch: (action: ActionType) => void
+
 };
 
 export const MyPosts = (props: PropsType) => {
@@ -17,14 +17,16 @@ export const MyPosts = (props: PropsType) => {
         props.state.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />);
 
     let newPostElement = React.createRef<HTMLTextAreaElement>(); // ссылка на HTML элемент 
+    
 
     const addPost = () => {
-        props.addPost(props.newPostText);
+        props.dispatch(addPostAC(props.newPostText));
     };
 
     const onPropsChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = newPostElement?.current?.value
-        props.updateNewPostText(text || '');
+        // let action = {type : 'UPDATE-NEW-POST-TEXT', newText: text || ''}
+        props.dispatch(changeNewTextAC(text || ''));
     };
 
     return (

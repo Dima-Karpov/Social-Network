@@ -1,31 +1,28 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { RootStateType, state, subscribe} from './redux/state';
+import {store} from './redux/state';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { addPost, updateNewPostText} from './redux/state';
 
-const renderTree = (state: RootStateType) => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <BrowserRouter>
-          <App
-            state={state}
-            addPost={addPost}
-            updateNewPostText={updateNewPostText}
-          />
-        </BrowserRouter>
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
-  }
-  
+const renderTree = () => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App
+          store={store}
+        />
+      </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
 
-renderTree(state);
 
-subscribe(renderTree);
+renderTree(); // call the function
+
+store.subscribe(renderTree)
 
 
 
