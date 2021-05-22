@@ -1,28 +1,31 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {store} from './redux/state';
+import {store} from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
 
 const renderTree = () => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App
-          store={store}
-        />
+      <Provider store={store}>
+        <App />
+      </Provider >
+        
       </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
+    </React.StrictMode>, document.getElementById('root')
   );
 }
 
 
 renderTree(); // call the function
 
-store.subscribe(renderTree)
+store.subscribe(() => {
+  renderTree()
+})
 
 
 

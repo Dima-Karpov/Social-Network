@@ -1,38 +1,49 @@
-import React, { ChangeEvent } from 'react';
-import { ActionType, addPostAC, changeNewTextAC, PostsType} from './/..//..//..//redux/state';
+import React, { KeyboardEvent } from 'react';
+import { addPostAC, changeNewTextAC, PostsType } from '../../../redux/profile-reducer';
+import { AppStateType } from '../../../redux/redux-store';
 import s from './MyPosts.module.css';
 import { Post } from './Post/Post';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux'
 
-
-type PropsType = {
-    state: Array<PostsType>
-    newPostText: string 
-    dispatch: (action: ActionType) => void
-
+export type ProfilePageType = {
+    posts: Array<PostsType>
+    newPostText: string
 };
 
-export const MyPosts = (props: PropsType) => {
+type MapStatePropsType = ProfilePageType
 
-    let postsElement =
-        props.state.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />);
+type MapDispatchPropsType = {
+    updateNewPostText: (text: string) => void
+    addPost: (text: string) => void
+}
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>(); // ссылка на HTML элемент 
-    
+export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
 
-    const addPost = () => {
-        props.dispatch(addPostAC(props.newPostText));
+export const MyPosts = (props: MyPostsPropsType) => {
+
+    const postsElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />);
+
+    const newPostElement = React.createRef<any>(); // ссылка на HTML элемент 
+
+    const text = newPostElement?.current?.value
+
+    const onAddPost = () => {
+        props.addPost(text)
     };
 
-    const onPropsChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = newPostElement?.current?.value
-        // let action = {type : 'UPDATE-NEW-POST-TEXT', newText: text || ''}
-        props.dispatch(changeNewTextAC(text || ''));
+    const onPropsChange = () => {
+        props.updateNewPostText(text || '')
     };
+
+    const onKeyPressSendPost = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter') {
+            onAddPost()
+        }
+    }
 
     return (
         <div className={s.postsBlock}>
-
-
             <h3>My posts</h3>
             <div>
                 <div>
@@ -40,10 +51,11 @@ export const MyPosts = (props: PropsType) => {
                         ref={newPostElement}
                         value={props.newPostText}
                         onChange={onPropsChange}
+                        onKeyPress={onKeyPressSendPost}
                     />
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
 
             </div>
@@ -53,3 +65,22 @@ export const MyPosts = (props: PropsType) => {
         </div>
     );
 }
+
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
+}
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        updateNewPostText: (text: string) => {
+            let action = changeNewTextAC(text || '')
+            dispatch(action)
+        },
+        addPost: (text: string) => {
+            dispatch(addPostAC(text));
+        }
+    }
+}
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

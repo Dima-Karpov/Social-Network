@@ -1,24 +1,37 @@
 import React, { ChangeEvent, KeyboardEvent } from 'react';
-import { sendMessageC, StorePropsType, updateNewMessageC, } from '../../redux/state';
+import { DialogsType, MessagesType, sendMessageC, updateNewMessageC } from '../../redux/dialogs-reduser';
 import { DialogItem } from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import { Message } from './Message/Message';
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux';
 
-
-type PropsType = {
-    store: StorePropsType
+export type DialogsPageType = {
+    messages: Array<MessagesType>
+    dialogs: Array<DialogsType>
+    newMessageBody: string
 };
 
-export const Dialogs = (props: PropsType) => {
+type MapStatePropsType = {
+    dialogsPage: DialogsPageType
+}
 
-    const state = props.store.getState().dialogsPage;
+type MapDispatchPropsType = {
+    onNewMessageChange: (body: string) => void
+    sendMessage: () => void
+}
 
-    const dialogsElement = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
-    const messagesElement = state.messages.map(m => <Message message={m.message} />);
+export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 
-    const newMessageBody = state.newMessageBody;
+
+export const Dialogs = (props: DialogsPropsType) => {
+
+    const dialogsElement = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
+    const messagesElement = props.dialogsPage.messages.map(m => <Message message={m.message} />);
+    const newMessageBody = props.dialogsPage.newMessageBody;
+
     const onSendMessageClick = () => {
-        props.store.dispatch(sendMessageC())
+        props.sendMessage()
     };
     const onKeyPressSendMessage = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter') {
@@ -28,10 +41,8 @@ export const Dialogs = (props: PropsType) => {
 
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value;
-        props.store.dispatch(updateNewMessageC(body))
+        props.onNewMessageChange(body)
     };
-
-
 
     return (
         <div className={s.dialogs}>
@@ -55,3 +66,21 @@ export const Dialogs = (props: PropsType) => {
         </div>
     );
 }
+
+const mapStateToProps = (state: DialogsPropsType): MapStatePropsType => {
+    return {
+        dialogsPage: state.dialogsPage
+    }
+}
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        onNewMessageChange: (body: string) => {
+            dispatch(updateNewMessageC(body))
+        },
+        sendMessage: () => {
+            dispatch(sendMessageC())
+        }
+    }
+}
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
