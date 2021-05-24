@@ -1,6 +1,6 @@
 import React from 'react';
 import { sendMessageC, updateNewMessageC } from './redux/dialogs-reduser';
-import { addPostAC, changeNewTextAC, PostsType } from './redux/profile-reducer';
+import { addPostAC, changeNewTextAC} from './redux/profile-reducer';
 import { DialogsPageType } from './сomponents/Dialogs/Dialogs';
 import { ProfilePageType } from './сomponents/Profile/MyPosts/MyPosts';
 

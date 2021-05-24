@@ -15,30 +15,30 @@ type MapStatePropsType = ProfilePageType
 
 type MapDispatchPropsType = {
     updateNewPostText: (text: string) => void
-    addPost: (text: string) => void
+    addPost: () => void
 }
 
 export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
-    const postsElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />);
+    const postsElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} key={p.id} />);
 
-    const newPostElement = React.createRef<any>(); // ссылка на HTML элемент 
+    const newPostElement = React.createRef<HTMLTextAreaElement>(); // ссылка на HTML элемент 
 
-    const text = newPostElement?.current?.value
+    
 
-    const onAddPost = () => {
-        props.addPost(text)
+    const onAddPost = ()  => {
+        props.addPost()
     };
 
     const onPropsChange = () => {
+        const text = newPostElement?.current?.value
         props.updateNewPostText(text || '')
     };
 
     const onKeyPressSendPost = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter') {
-            onAddPost()
         }
     }
 
@@ -57,7 +57,6 @@ export const MyPosts = (props: MyPostsPropsType) => {
                 <div>
                     <button onClick={onAddPost}>Add post</button>
                 </div>
-
             </div>
             <div className={s.posts}>
                 {postsElement}
@@ -75,11 +74,11 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         updateNewPostText: (text: string) => {
-            let action = changeNewTextAC(text || '')
+            let action = changeNewTextAC(text)
             dispatch(action)
         },
-        addPost: (text: string) => {
-            dispatch(addPostAC(text));
+        addPost: () => {
+            dispatch(addPostAC());
         }
     }
 }
