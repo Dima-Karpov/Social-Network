@@ -1,8 +1,7 @@
 import React from 'react';
-import { sendMessageC, updateNewMessageC } from './redux/dialogs-reduser';
-import { addPostAC, changeNewTextAC} from './redux/profile-reducer';
 import { DialogsPageType } from './сomponents/Dialogs/Dialogs';
 import { ProfilePageType } from './сomponents/Profile/MyPosts/MyPosts';
+import { UsersPageType } from './сomponents/Users/Users';
 
 type ProviderType = {
     store: StorePropsType
@@ -13,23 +12,20 @@ type ProviderType = {
 export type RootStateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
+    usersPega: UsersPageType
     sidebar: any
 
 };
 
-export type ActionType = ReturnType<typeof addPostAC> |
-  ReturnType<typeof changeNewTextAC> |
-  ReturnType<typeof sendMessageC> |
-  ReturnType<typeof updateNewMessageC>
+ 
 
 export type StorePropsType = {
     _state: RootStateType
     getState: () => RootStateType  // pay attention
     _onChange: () => void
-    // addPost: (newPostText: string) => void
-    // updateNewPostText: (newText: string) => void
+  
     subscribe: (observer: () => void) => void
-    dispatch: (action: ActionType) => void
+    dispatch: (action: any) => void
 };
 
 export const StoreContext = React.createContext({} as StorePropsType);

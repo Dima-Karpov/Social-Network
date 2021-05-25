@@ -1,5 +1,4 @@
 import React from 'react';
-import { ActionType } from '../StoreContext';
 
 export type PostsType = {
     id: number
@@ -8,6 +7,8 @@ export type PostsType = {
 };
 export type InitialStateType = typeof initialState
 
+type ActionType = ReturnType<typeof addPostAC> |
+  ReturnType<typeof changeNewTextAC> 
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';

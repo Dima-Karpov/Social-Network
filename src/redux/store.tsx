@@ -51,7 +51,7 @@ type DialogsPageType = {
   dispatch: (action: ActionType) => void
 };
 
-export const store: StorePropsType = {    // OOP
+ const store: StorePropsType = {    // OOP
   _state: {
     profilePage: {
       posts: [
@@ -91,7 +91,7 @@ export const store: StorePropsType = {    // OOP
     this._onChange = observer
   },
 
-  dispatch(action) {
+  dispatch(action: any) {
 
     this._state.profilePage = profileReducer(this._state.profilePage, action);
     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);

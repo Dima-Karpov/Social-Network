@@ -1,5 +1,4 @@
 import React from 'react';
-import { ActionType } from '../StoreContext';
 
 
 export type DialogsType = {
@@ -13,6 +12,9 @@ export type MessagesType = {
 };
 
 export type InitialStateType = typeof initialState
+
+type ActionType = ReturnType<typeof sendMessageC> |
+  ReturnType<typeof updateNewMessageC>
 
 
 const SEND_MESSAGE = 'SEND-MASSAGE';

@@ -11,10 +11,10 @@
   grid-gap: 10px;
 }  
 
-.app-wrapper img {
+/* .app-wrapper img {
   width: 800px;
 
-}
+} */
 
 .app-wrapper-content {
   grid-area: c;

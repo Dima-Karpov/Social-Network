@@ -1,6 +1,7 @@
 import { combineReducers, createStore } from "redux";
-import dialogsReducer, { sendMessageC, updateNewMessageC } from "./dialogs-reduser";
-import profileReducer, { addPostAC, changeNewTextAC, PostsType } from "./profile-reducer";
+import dialogsReducer from "./dialogs-reduser";
+import profileReducer from "./profile-reducer";
+import usersReducer from "./users-reducer";
 
 
 
@@ -8,6 +9,7 @@ import profileReducer, { addPostAC, changeNewTextAC, PostsType } from "./profile
 const  rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
+    usersPage: usersReducer
 
     // sidebar: 
 });
