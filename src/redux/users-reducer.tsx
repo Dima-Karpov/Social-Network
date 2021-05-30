@@ -1,15 +1,18 @@
 import React from 'react';
 
+type PhotosType = {
+    small: null
+    large: null
+}
 type LocationType = {
     city: string
     country: string
 }
-
 export type UsersType = {
     id: number
-    photoUrl: string
+    photos: PhotosType
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: LocationType
 };

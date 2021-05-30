@@ -15,7 +15,6 @@ type UserType = {
     }
 }
 
-
 export const user:UserType = {
     nema: 'it-kamasutra.com',
     protocol: 'https',

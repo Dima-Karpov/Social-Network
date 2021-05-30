@@ -8,7 +8,7 @@ import { Profile } from './сomponents/Profile/Profile';
 import { Settings } from './сomponents/Settings/Settings';
 import { Route } from 'react-router-dom';
 import {  DialogsContainer } from './сomponents/Dialogs/Dialogs';
-import { Users, UsersContainer } from './сomponents/Users/Users';
+import { UsersContainer } from './сomponents/Users/UsersContainer';
 
 
 type AppPropsType = {
