@@ -1,13 +1,12 @@
 import React from 'react';
 import { DialogsPageType } from './сomponents/Dialogs/Dialogs';
 import { ProfilePageType } from './сomponents/Profile/MyPosts/MyPosts';
-import { UsersPageType } from './сomponents/Users/Users';
+import { UsersPageType } from './сomponents/Users/UsersContainer';
 
 type ProviderType = {
     store: StorePropsType
     children: React.ReactNode
 };
-
 
 export type RootStateType = {
     dialogsPage: DialogsPageType
@@ -17,13 +16,10 @@ export type RootStateType = {
 
 };
 
- 
-
 export type StorePropsType = {
     _state: RootStateType
     getState: () => RootStateType  // pay attention
     _onChange: () => void
-  
     subscribe: (observer: () => void) => void
     dispatch: (action: any) => void
 };

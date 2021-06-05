@@ -19,7 +19,9 @@ export type UsersType = {
 
 type ActionType = ReturnType<typeof followAC> |
     ReturnType<typeof unfollowAC> |
-    ReturnType<typeof setUserAC>
+    ReturnType<typeof setUserAC> |
+    ReturnType<typeof setCarrentPageAC> |
+    ReturnType<typeof setTotalUserCountAC>
 
 export type InitialStateType = typeof initialState
 
@@ -27,9 +29,14 @@ export type InitialStateType = typeof initialState
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USERS-COUNT';
 
 const initialState = {
-    users: [] as Array<UsersType>
+    users: [] as Array<UsersType>, 
+    pageSize: 10,
+    totalUsersCount: 100,
+    carrentPage: 1,
 };
 
 
@@ -67,7 +74,17 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
                 ...state,
                 users: action.users
             }
-        default:
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                carrentPage: action.carrentPage
+            }
+        case SET_TOTAL_USER_COUNT:
+            return {
+                ...state,
+                carrentPage: action.count
+            }
+        default: 
             return state;
     }
 }
@@ -90,5 +107,17 @@ export const setUserAC = (users: Array<UsersType>) => {
         users: users
     } as const
 };
+export const setCarrentPageAC = (carrentPage: number) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        carrentPage,
+    } as const
+}
+export const setTotalUserCountAC = (totalUsersCount: number) => {
+    return {
+        type: SET_TOTAL_USER_COUNT,
+        count: totalUsersCount,
+    } as const
+}
 
 export default usersReducer
