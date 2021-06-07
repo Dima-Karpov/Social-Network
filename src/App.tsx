@@ -4,11 +4,11 @@ import { Header } from './сomponents/Header/Header';
 import { Music } from './сomponents/Music/Music';
 import { Navbar } from './сomponents/Navbar/Navbar';
 import { News } from './сomponents/News/News';
-import { Profile } from './сomponents/Profile/Profile';
 import { Settings } from './сomponents/Settings/Settings';
 import { Route } from 'react-router-dom';
 import {  DialogsContainer } from './сomponents/Dialogs/Dialogs';
 import { UsersContainer } from './сomponents/Users/UsersContainer';
+import ProfileContainer from './сomponents/Profile/ProfileContainer';
 
 
 type AppPropsType = {
@@ -20,9 +20,9 @@ const App: React.FC<AppPropsType> = (props) => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/profile'
+        <Route path='/profile/:user_Id?'
           render={() =>
-            < Profile/>} />
+            < ProfileContainer/>} />
         <Route path='/messages'
           render={() => <DialogsContainer />} />
         <Route path='/users'
