@@ -19,8 +19,8 @@ type ProfileContainerType = {
 
 class ProfileAPIContainer extends React.Component<ProfileContainerType>{
     componentDidMount(){
-        const user_Id = this.props.match.params.userId || 2
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${user_Id}`)
+        const userId = this.props.match.params.userId || 2
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
         .then(response => {
             this.props.setUsersProfile(response.data)
         })
@@ -38,8 +38,10 @@ let mapStateToProps = (state: AppStateType) => {
         profile: state.profilePage.profile 
     }
     
-}
-// @ts-ignore
-export default  connect(mapStateToProps, {setUsersProfile})(withRouter(ProfileAPIContainer))
+};
+
+let WithUrlDataContainerComponent = withRouter(ProfileAPIContainer);
+
+export default  connect(mapStateToProps, {setUsersProfile})(WithUrlDataContainerComponent)
 
 // {...this.props}

@@ -20,7 +20,7 @@ const App: React.FC<AppPropsType> = (props) => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/profile/:user_Id?'
+        <Route path='/profile/:userId?'
           render={() =>
             < ProfileContainer/>} />
         <Route path='/messages'
