@@ -32,7 +32,9 @@ type MapStatePropsType = UsersPageMapType
 class UsersComponent extends React.Component<UsersPageType> {
     componentDidMount() {
         this.props.toggeleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0//users?page=${this.props.carrentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0//users?page=${this.props.carrentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then(response => {
                 this.props.toggeleIsFetching(false);
                 this.props.setUsers(response.data.items)
@@ -42,7 +44,9 @@ class UsersComponent extends React.Component<UsersPageType> {
     onPageChanged = (pageNumber: number) => {
         this.props.toggeleIsFetching(true);
         this.props.setCarrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0//users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0//users?page=${pageNumber}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+        })
             .then(response => {
                 this.props.toggeleIsFetching(false);
                 this.props.setUsers(response.data.items)

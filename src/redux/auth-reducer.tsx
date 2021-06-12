@@ -1,10 +1,7 @@
 import React from 'react';
 
-;
 
 type ActionType = ReturnType<typeof setAuthUserData>
-
-export type InitialStateType = typeof initialState
 
 const SET_USER_DATA = 'SET-USER-DATA';
 
@@ -13,8 +10,7 @@ export type InitStateType = {
     email: string | null,
     login:  string | null,
     isAuth: boolean,
-}
-
+};
 
 const initialState = {
     id: null,
@@ -22,7 +18,6 @@ const initialState = {
     login: null,
     isAuth: false,
 };
-
 
 const authReducer = (state: InitStateType = initialState, action: ActionType): InitStateType => {
 
@@ -33,11 +28,10 @@ const authReducer = (state: InitStateType = initialState, action: ActionType): I
                 ...action.data,
                 isAuth: true
             }
-        
         default: 
             return state;
-    }
-}
+    };
+};
 
 export const setAuthUserData = ( id: number, email: string, login: string) => {
     return {
