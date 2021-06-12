@@ -9,6 +9,7 @@ import { Route } from 'react-router-dom';
 import {  DialogsContainer } from './сomponents/Dialogs/Dialogs';
 import { UsersContainer } from './сomponents/Users/UsersContainer';
 import ProfileContainer from './сomponents/Profile/ProfileContainer';
+import { HeaderContainer } from './сomponents/Header/HeaderContainer';
 
 
 type AppPropsType = {
@@ -17,7 +18,7 @@ type AppPropsType = {
 const App: React.FC<AppPropsType> = (props) => {
   return (
     <div className='app-wrapper'>
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/profile/:userId?'
