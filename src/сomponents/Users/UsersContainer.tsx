@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store';
 import { followAC, setCarrentPageAC, setTotalUserCountAC, setUserAC, toggelIsFetchingAC, unfollowAC, UsersType } from '../../redux/users-reducer';
-import axios from 'axios';
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
+import { usersAPI } from '../../api/api';
+
 
 export type UsersPageType = {
     users: Array<UsersType>
@@ -32,31 +33,27 @@ type MapStatePropsType = UsersPageMapType
 class UsersComponent extends React.Component<UsersPageType> {
     componentDidMount() {
         this.props.toggeleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0//users?page=${this.props.carrentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        })
-            .then(response => {
+        usersAPI.getUsers(this.props.carrentPage, this.props.pageSize)
+            .then(data => {
                 this.props.toggeleIsFetching(false);
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUserCount(response.data.totalCount)
+                this.props.setUsers(data.items)
+                this.props.setTotalUserCount(data.totalCount)
             })
     };
     onPageChanged = (pageNumber: number) => {
         this.props.toggeleIsFetching(true);
         this.props.setCarrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0//users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        })
-            .then(response => {
+
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
+            .then(data => {
                 this.props.toggeleIsFetching(false);
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(data.items)
             })
     };
     render() {
-
         return (
             <>
-               {this.props.isFetching ? <Preloader /> : null}
+                {this.props.isFetching ? <Preloader /> : null}
                 <UsersFunc
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
