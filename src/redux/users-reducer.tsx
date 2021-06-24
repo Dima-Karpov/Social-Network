@@ -1,4 +1,6 @@
-import React from 'react';
+import { ThunkAction } from 'redux-thunk'
+import { usersAPI } from '../api/api';
+import { AppStateType } from './redux-store';
 
 type PhotosType = {
     small: null
@@ -17,13 +19,13 @@ export type UsersType = {
     location: LocationType
 };
 
-type ActionType = ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUserAC>
+type ActionType = ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
     | ReturnType<typeof setCarrentPageAC>
-    | ReturnType<typeof setTotalUserCountAC>
-    | ReturnType<typeof toggelIsFetchingAC>
-    | ReturnType<typeof toggelInProgressAC>
+    | ReturnType<typeof setTotalUserCount>
+    | ReturnType<typeof toggelIsFetching>
+    | ReturnType<typeof toggelInProgress>
 
 export type InitialStateType = typeof initialState
 
@@ -113,19 +115,19 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
     }
 }
 
-export const followAC = (userID: number) => {
+export const follow = (userID: number) => {
     return {
         type: FOLLOW,
         userID: userID
     } as const
 };
-export const unfollowAC = (userID: number) => {
+export const unfollow = (userID: number) => {
     return {
         type: UNFOLLOW,
         userID: userID
     } as const
 };
-export const setUserAC = (users: Array<UsersType>) => {
+export const setUsers = (users: Array<UsersType>) => {
     return {
         type: SET_USERS,
         users: users
@@ -137,24 +139,68 @@ export const setCarrentPageAC = (carrentPage: number) => {
         carrentPage,
     } as const
 }
-export const setTotalUserCountAC = (totalUsersCount: number) => {
+export const setTotalUserCount = (totalUsersCount: number) => {
     return {
         type: SET_TOTAL_USER_COUNT,
         count: totalUsersCount,
     } as const
 }
-export const toggelIsFetchingAC = (isFetching: boolean) => {
+export const toggelIsFetching = (isFetching: boolean) => {
     return {
         type: TOGGEL_IS_FETCHING,
         isFetching,
     } as const
 }
-export const toggelInProgressAC = (isFetching: boolean, userID: number) => {
+export const toggelInProgress = (isFetching: boolean, userID: number) => {
     return {
         type: TOGGEL_IN_FOLLOWING_PROGRESS,
         isFetching,
         userID,
     } as const
 }
+
+
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+
+    return async (dispatch) => {
+        dispatch(toggelIsFetching(true));
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggelIsFetching(false));
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUserCount(data.totalCount))
+            })
+    }
+
+};
+
+export const followThunkCreator = (usersID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+
+    return async (dispatch) => {
+        dispatch(toggelInProgress(true, usersID));
+        usersAPI.follow(usersID)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(follow(usersID));
+                }
+                dispatch(toggelInProgress(false, usersID));
+            })
+    }
+};
+
+export const unFollowThunkCreator = (usersID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+
+    return async (dispatch) => {
+        dispatch(toggelInProgress(true, usersID));
+        usersAPI.unfollow(usersID)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollow(usersID));
+                }
+                dispatch(toggelInProgress(false, usersID));
+            })
+    }
+};
 
 export default usersReducer

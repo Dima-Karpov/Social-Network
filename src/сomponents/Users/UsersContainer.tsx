@@ -1,26 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store';
-import { followAC, setCarrentPageAC, setTotalUserCountAC, setUserAC, toggelInProgressAC, toggelIsFetchingAC, unfollowAC, UsersType } from '../../redux/users-reducer';
+import { follow, setCarrentPageAC, toggelInProgress, unfollow, UsersType, getUsersThunkCreator } from '../../redux/users-reducer';
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
-import { usersAPI } from '../../api/api';
 
 
 export type UsersPageType = {
     users: Array<UsersType>
     follow: (usersID: number) => void
     unfollow: (usersID: number) => void
-    setUsers: (users: Array<UsersType>) => void
     setCarrentPage: (carrentPage: number) => void
-    setTotalUserCount: (totalCount: number) => void
-    toggeleIsFetching: (isFetching: boolean) => void
     toggelInProgress: (isFetching: boolean, userID: number) => void
     totalUsersCount: number
     pageSize: number
     carrentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
     
 };
 type UsersPageMapType = {
@@ -36,23 +33,11 @@ type MapStatePropsType = UsersPageMapType
 
 class UsersComponent extends React.Component<UsersPageType> {
     componentDidMount() {
-        this.props.toggeleIsFetching(true);
-        usersAPI.getUsers(this.props.carrentPage, this.props.pageSize)
-            .then(data => {
-                this.props.toggeleIsFetching(false);
-                this.props.setUsers(data.items)
-                this.props.setTotalUserCount(data.totalCount)
-            })
+        this.props.getUsersThunkCreator(this.props.carrentPage, this.props.pageSize);
     };
+    
     onPageChanged = (pageNumber: number) => {
-        this.props.toggeleIsFetching(true);
-        this.props.setCarrentPage(pageNumber);
-
-        usersAPI.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.toggeleIsFetching(false);
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
     };
     render() {
         return (
@@ -66,7 +51,6 @@ class UsersComponent extends React.Component<UsersPageType> {
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
                     carrentPage={this.props.carrentPage}
-                    toggelInProgress={this.props.toggelInProgress}
                     followingInProgress={this.props.followingInProgress}
 
                 />
@@ -87,12 +71,11 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 };
 
 export const UsersContainer = connect(mapStateToProps, {
-    follow: followAC,
-    unfollow: unfollowAC,
-    setUsers: setUserAC,
+    follow,
+    unfollow,
     setCarrentPage: setCarrentPageAC,
-    setTotalUserCount: setTotalUserCountAC,
-    toggeleIsFetching: toggelIsFetchingAC,
-    toggelInProgress: toggelInProgressAC,
+    toggelInProgress,
+    getUsersThunkCreator,
+
 })(UsersComponent)
 
