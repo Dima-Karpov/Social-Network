@@ -34,7 +34,6 @@ export const UsersFunc = (props: UsersFyncPropsType) => {
                         >{p}</span>
                     )
                 })}
-
             </div>
             {props.users.map(u => <div key={u.id}>
                 <span>

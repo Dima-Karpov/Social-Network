@@ -1,4 +1,7 @@
 import React from 'react';
+import { ThunkAction } from 'redux-thunk';
+import { authAPI } from '../api/api';
+import { AppStateType } from './redux-store';
 
 
 type ActionType = ReturnType<typeof setAuthUserData>
@@ -38,6 +41,18 @@ export const setAuthUserData = ( id: number, email: string, login: string) => {
         type: SET_USER_DATA,
         data: {id, email, login}
     } as const
+};
+
+export const getAuthUserData = (): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+    return async (dispatch) => {
+        authAPI.mu()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let { id, email, login } = response.data.data;
+                    dispatch(setAuthUserData(id, email, login))
+                }
+            })
+    }
 };
 
 

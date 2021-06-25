@@ -1,4 +1,7 @@
 import React from 'react';
+import { ThunkAction } from 'redux-thunk';
+import { usersAPI } from '../api/api';
+import { AppStateType } from './redux-store';
 
 export type PostsType = {
     id: number
@@ -91,6 +94,17 @@ export const setUsersProfile = (profile: any) => {
         type: SET_USER_PROFILE,
         profile,
     } as const
+};
+
+
+
+export const getUsersProfile = (userID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+    return async (dispatch) => {
+        usersAPI.getProfile(userID)
+            .then(response => {
+               dispatch(setUsersProfile(response.data))
+            })
+    }
 };
 
 export default profileReducer
