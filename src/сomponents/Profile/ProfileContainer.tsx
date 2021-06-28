@@ -1,27 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import { getUsersProfile, ProfileType } from '../../redux/profile-reducer';
-import { AppStateType } from '../../redux/redux-store';
+import { RootState } from '../../redux/redux-store';
 import { Profile } from './Profile';
 import s from './Profile.module.css';
 
-type ProfileContainerType = {
+type ProfileAPIContainerType = {
     profile: ProfileType
     getUsersProfile: (userID: number) => void
     history: any
     location: any
     match: any
     staticContext: any
+    isAuth: boolean
 }
 
-class ProfileAPIContainer extends React.Component<ProfileContainerType>{
+class ProfileAPIContainer extends React.Component<ProfileAPIContainerType>{
     componentDidMount() {
         const userID = this.props.match.params.userId || 2;
 
         this.props.getUsersProfile(userID)
     }
     render() {
+
+        if(this.props.isAuth === false) {
+            return <Redirect to='/login'/>
+        }
         return (
             <div className={s.descriptionBlock}>
                 <Profile profile={this.props.profile} />
@@ -29,9 +35,10 @@ class ProfileAPIContainer extends React.Component<ProfileContainerType>{
         );
     }
 }
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: RootState) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth,
     }
 
 };

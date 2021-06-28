@@ -5,15 +5,19 @@ import s from './Dialogs.module.css';
 import { Message } from './Message/Message';
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux';
+import { AppStateType } from '../../redux/redux-store';
+import { Redirect } from 'react-router-dom';
 
 export type DialogsPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
     newMessageBody: string
+    
 };
 
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -44,6 +48,10 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.onNewMessageChange(body)
     };
 
+    if (!props.isAuth) {
+        return <Redirect to='/login'/>
+    }
+        
     return (
         <div className={s.dialogs}>
 
@@ -67,9 +75,10 @@ export const Dialogs = (props: DialogsPropsType) => {
     );
 }
 
-const mapStateToProps = (state: DialogsPropsType): MapStatePropsType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
