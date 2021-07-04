@@ -6,11 +6,10 @@ import { Navbar } from './сomponents/Navbar/Navbar';
 import { News } from './сomponents/News/News';
 import { Settings } from './сomponents/Settings/Settings';
 import { Route } from 'react-router-dom';
-import {  DialogsContainer } from './сomponents/Dialogs/Dialogs';
-import { UsersContainer } from './сomponents/Users/UsersContainer';
 import ProfileContainer from './сomponents/Profile/ProfileContainer';
 import { HeaderContainer } from './сomponents/Header/HeaderContainer';
 import { Login } from './сomponents/Login/Login';
+import { DialogsContainer } from './сomponents/Dialogs/Dialogs';
 
 
 type AppPropsType = {

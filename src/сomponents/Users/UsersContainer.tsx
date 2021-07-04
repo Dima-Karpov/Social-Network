@@ -4,6 +4,7 @@ import { AppStateType } from '../../redux/redux-store';
 import { follow, setCarrentPageAC, toggelInProgress, unfollow, UsersType, getUsersThunkCreator } from '../../redux/users-reducer';
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
+import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
 
 
 export type UsersPageType = {
@@ -70,12 +71,14 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 };
 
-export const UsersContainer = connect(mapStateToProps, {
+
+
+export default wihtAuthRedirect(connect(mapStateToProps, {
     follow,
     unfollow,
     setCarrentPage: setCarrentPageAC,
     toggelInProgress,
     getUsersThunkCreator,
 
-})(UsersComponent)
+})(UsersComponent))
 

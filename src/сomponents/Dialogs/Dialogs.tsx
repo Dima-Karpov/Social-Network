@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { Dispatch } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';
+import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
 
 export type DialogsPageType = {
     messages: Array<MessagesType>
@@ -25,7 +26,7 @@ type MapDispatchPropsType = {
     sendMessage: () => void
 }
 
-export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
+export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType 
 
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -75,12 +76,14 @@ export const Dialogs = (props: DialogsPropsType) => {
     );
 }
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+
+
+const mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
     }
-}
+};
+
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         onNewMessageChange: (body: string) => {
@@ -90,6 +93,10 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
             dispatch(sendMessageC())
         }
     }
-}
+};
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+let AuthRedirectComponent = wihtAuthRedirect(Dialogs); 
+
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
