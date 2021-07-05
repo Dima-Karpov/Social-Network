@@ -29,7 +29,7 @@ const App: React.FC<AppPropsType> = (props) => {
           render={() => <Dialogs />} />
         <Route path='/users'
           render={() => <UsersComponent />} />
-        <Route path='/messages'
+        <Route path='/login'
           render={() => <Login />} />
         <Route path='/news' render={() => <News />} />
         <Route path='/music' render={() => <Music />} />
