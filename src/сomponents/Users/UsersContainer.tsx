@@ -71,13 +71,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         followingInProgress: state.usersPage.followingInProgress,
     }
 };
-
-
-
-
-
-
-epxort default compose(
+export default compose<React.ComponentType>(
     (connect(mapStateToProps, {
         follow,
         unfollow,
@@ -85,6 +79,6 @@ epxort default compose(
         toggelInProgress,
         getUsersThunkCreator,
     
-    }),
+    })),
     wihtAuthRedirect
 )(UsersComponent)

@@ -6,7 +6,6 @@ import { Message } from './Message/Message';
 import { connect } from 'react-redux'
 import { Dispatch, compose } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
-import { Redirect } from 'react-router-dom';
 import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
 
 export type DialogsPageType = {
@@ -18,7 +17,6 @@ export type DialogsPageType = {
 
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
-    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -29,7 +27,7 @@ type MapDispatchPropsType = {
 export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType 
 
 
-export const Dialogs = (props: DialogsPropsType) => {
+ const Dialogs = (props: DialogsPropsType) => {
 
     const dialogsElement = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
     const messagesElement = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id}/>);
@@ -49,9 +47,7 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.onNewMessageChange(body)
     };
 
-    if (!props.isAuth) {
-        return <Redirect to='/login'/>
-    }
+  
         
     return (
         <div className={s.dialogs}>
@@ -97,8 +93,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 
 
 
-
-export const compose: any(
+export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
     wihtAuthRedirect
 )(Dialogs)

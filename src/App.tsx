@@ -9,7 +9,8 @@ import { Route } from 'react-router-dom';
 import ProfileContainer from './сomponents/Profile/ProfileContainer';
 import { HeaderContainer } from './сomponents/Header/HeaderContainer';
 import { Login } from './сomponents/Login/Login';
-import { DialogsContainer } from './сomponents/Dialogs/Dialogs';
+import Dialogs from './сomponents/Dialogs/Dialogs';
+import UsersComponent from './сomponents/Users/UsersContainer'
 
 
 type AppPropsType = {
@@ -23,12 +24,13 @@ const App: React.FC<AppPropsType> = (props) => {
       <div className='app-wrapper-content'>
         <Route path='/profile/:userId?'
           render={() =>
-            < ProfileContainer/>} />
+            < ProfileContainer />} />
         <Route path='/messages'
-          render={() => <DialogsContainer />} />
-        <Route path='/login'
-          render={() => <Login /> }/>
-
+          render={() => <Dialogs />} />
+        <Route path='/users'
+          render={() => <UsersComponent />} />
+        <Route path='/messages'
+          render={() => <Login />} />
         <Route path='/news' render={() => <News />} />
         <Route path='/music' render={() => <Music />} />
         <Route path='/settings' render={() => <Settings />} />

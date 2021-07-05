@@ -1,6 +1,5 @@
 import React, { } from 'react';
 import { DialogsType, InitialStateType, MessagesType, sendMessageC, updateNewMessageC, } from '../../redux/dialogs-reduser';
-import { Dialogs } from './Dialogs';
 import {connect} from 'react-redux'
 import { Dispatch } from 'redux';
 
