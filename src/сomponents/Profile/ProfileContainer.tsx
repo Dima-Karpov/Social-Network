@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { Redirect } from 'react-router-dom';
 import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
 import { getUsersProfile, ProfileType } from '../../redux/profile-reducer';
 import { RootState } from '../../redux/redux-store';
 import { Profile } from './Profile';
 import s from './Profile.module.css';
+import { compose } from 'redux';
 
 type ProfileAPIContainerType = {
     profile: ProfileType
@@ -40,10 +40,12 @@ let mapStateToProps = (state: RootState) => {
     }
 };
 
-let AuthRedirectComponent = wihtAuthRedirect(ProfileAPIContainer);
+export default compose(
+    connect(mapStateToProps, { getUsersProfile }),
+    withRouter,
+    wihtAuthRedirect
+    )(ProfileAPIContainer)
 
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 
-export default connect(mapStateToProps, { getUsersProfile })(WithUrlDataContainerComponent)
 
 // {...this.props}

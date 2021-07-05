@@ -4,7 +4,7 @@ import { DialogItem } from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import { Message } from './Message/Message';
 import { connect } from 'react-redux'
-import { Dispatch } from 'redux';
+import { Dispatch, compose } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
 import { Redirect } from 'react-router-dom';
 import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
@@ -96,7 +96,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 };
 
 
-let AuthRedirectComponent = wihtAuthRedirect(Dialogs); 
 
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+export const compose: any(
+    connect(mapStateToProps, mapDispatchToProps),
+    wihtAuthRedirect
+)(Dialogs)

@@ -5,6 +5,7 @@ import { follow, setCarrentPageAC, toggelInProgress, unfollow, UsersType, getUse
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
 import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
+import { compose } from 'redux';
 
 
 export type UsersPageType = {
@@ -73,12 +74,17 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 
 
-export default wihtAuthRedirect(connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCarrentPage: setCarrentPageAC,
-    toggelInProgress,
-    getUsersThunkCreator,
 
-})(UsersComponent))
 
+
+epxort default compose(
+    (connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setCarrentPage: setCarrentPageAC,
+        toggelInProgress,
+        getUsersThunkCreator,
+    
+    }),
+    wihtAuthRedirect
+)(UsersComponent)
