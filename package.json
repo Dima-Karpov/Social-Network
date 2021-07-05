@@ -27,12 +27,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "yarn run build",
+    "test": "react-scripts test",
+    "deploy": "gh-pages -b master -d build",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
