@@ -39,7 +39,6 @@ let mapStateToProps = (state: RootState) => {
         profile: state.profilePage.profile,
     }
 };
-debugger
 export default compose<React.ComponentType>(
     connect(mapStateToProps, { getUsersProfile }),
     withRouter,

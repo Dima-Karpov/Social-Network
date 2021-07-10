@@ -14,7 +14,6 @@ let mapStateToPropsForRedirect = (state: AppStateType): MapStatePropsType => {
 };
 
 export function wihtAuthRedirect<T>(Component: ComponentType<T>) {
-    debugger
     const RedirectComponent = (props: MapStatePropsType) => {
         let { isAuth, ...restProps } = props;
 

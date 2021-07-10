@@ -2,6 +2,7 @@ import React from 'react';
 import { ProfileType } from '../../../redux/profile-reducer';
 import { Preloader } from '../../common/preloader/Preloader';
 import s from './ProfileInfo.module.css';
+import { ProfileStatus } from './ProfileStatus';
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -13,12 +14,14 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
     }
     return (
         <div>
-            <div >
-                <img src='https://nastol.net/wallpaper/big/58/1181383-pole-trava-zelenyy-priroda-nebo-peyzazhi.jpg' ></img>
-            </div>
+            {/* <div > */}
+                {/* <img src='https://nastol.net/wallpaper/big/58/1181383-pole-trava-zelenyy-priroda-nebo-peyzazhi.jpg' ></img> */}
+                 
+            {/* </div> */}
             <div>
                 <img src={props.profile.photos.large} />
-                
+                 <ProfileStatus status={'Hello my friends'}/>
+
                 {props.profile.fullName} <br />
                 {props.profile.aboutMe} <br />
                 {props.profile.lookingForAJob}
@@ -26,4 +29,5 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
             </div>
         </div>
     );
-}
+};
+
