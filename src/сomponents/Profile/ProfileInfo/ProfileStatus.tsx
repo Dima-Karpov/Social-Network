@@ -10,7 +10,7 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
     state = {
         editMode: false,
-        status: this.props.status
+        status: this.props.status,
     };
 
     activateEditMode = () => {
@@ -30,9 +30,21 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
         })
     }
 
+    componentDidUpdate = (prevProps: any, prevState: any) => {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+        console.log('componentDidUpdate')
+    }
+
     render() {
+        console.log('render')
         return (
+            
             <div>
+              
                 {!this.state.editMode &&
                     <div>
                         <span onDoubleClick={this.activateEditMode}>
