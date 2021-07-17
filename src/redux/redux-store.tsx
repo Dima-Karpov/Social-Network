@@ -4,15 +4,15 @@ import authReducer from "./auth-reducer";
 import dialogsReducer from "./dialogs-reduser";
 import profileReducer from "./profile-reducer";
 import usersReducer from "./users-reducer";
-
-
+import {reducer as formReducer} from 'redux-form'
 
 
 const  rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer,
 
     // sidebar: 
 });
@@ -26,3 +26,6 @@ export type AppStateType = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch
 
 export type RootState = ReturnType<typeof store.getState>
+
+// @ts-ignore
+window.store = store
