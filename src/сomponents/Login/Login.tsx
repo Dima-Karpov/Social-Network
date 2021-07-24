@@ -14,7 +14,7 @@ export const Login = () => {
             <LoginReduxForn onSubmit={onSubmit}/>
         </div>
     )
-}
+};
 
 type LoginFormPropsType = {
     handleSubmit: any
