@@ -1,4 +1,3 @@
-import { AnyAaaaRecord } from 'node:dns';
 import React from 'react';
 import { ThunkAction } from 'redux-thunk';
 import { profileAPI, usersAPI } from '../api/api';
@@ -12,12 +11,10 @@ export type PostsType = {
 export type InitialStateType = typeof initialState
 
 type ActionType = ReturnType<typeof addPostAC> 
- | ReturnType<typeof changeNewTextAC> 
  | ReturnType<typeof setUsersProfile>
  | ReturnType<typeof setStatus>
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS'
 
@@ -59,18 +56,13 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
         case ADD_POST:
             const newPost: PostsType = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: '0'
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
                 newPostText: ''
-            }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case SET_USER_PROFILE:
             return {
@@ -87,15 +79,10 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
     }
 }
 
-export const addPostAC = () => {
+export const addPostAC = (newPostText: string) => {
     return {
         type: ADD_POST,
-    } as const
-};
-export const changeNewTextAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
+        newPostText,
     } as const
 };
 export const setUsersProfile = (profile: any) => {

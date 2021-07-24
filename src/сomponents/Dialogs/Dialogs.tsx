@@ -8,6 +8,7 @@ import { Dispatch, compose } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
 import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
 import { Field, reduxForm } from 'redux-form';
+import { AddMessageFormRedux } from './AddMessageForm';
 
 export type DialogsPageType = {
     messages: Array<MessagesType>
@@ -53,7 +54,7 @@ const Dialogs = (props: DialogsPropsType) => {
 
         </div>
     );
-}
+};
 
 
 const mapStateToProps = (state: AppStateType) => {
@@ -69,26 +70,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         }
     }
 };
-
-type AddMessageFormPropsType = {
-    handleSubmit: any
-}
-
-const AddMessageForm = (props: AddMessageFormPropsType) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component='textarea' name='newMessageBody' placeholder='Enter your message' />
-                <div><button>Send</button></div>
-            </div>
-
-        </form>
-    )
-}
-
-const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessageForm' })(AddMessageForm)
-
-
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
