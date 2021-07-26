@@ -12,19 +12,19 @@ const maxLength = maxLengthCreators(10);
 const AddMyPostForm: React.FC<InjectedFormProps<FormDataType>> = (porps) => {
     return (
         <form onSubmit={porps.handleSubmit}>
-                <div>
-                    <Field 
+            <div>
+                <Field
                     component={Textarea}
-                    name='newPostText' 
+                    name='newPostText'
                     placeholder='Enter your post'
                     validate={[required, maxLength]}
-                    />
-                </div>
-                <div>
-                    <button>Add post</button>
-                </div>
-            </form>
+                />
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
     )
 };
 
-export const AddMyPostFromRedux = reduxForm<FormDataType>({form: 'profileMyPostForm'})(AddMyPostForm);
+export const AddMyPostFromRedux = reduxForm<FormDataType>({ form: 'profileMyPostForm' })(AddMyPostForm);
