@@ -1,9 +1,20 @@
-
-
-.formControl.error input,
-.formControl.error textarea {
-    border: solid red 1px;
+.errorBlock {
+    min-height: 22px;
 }
-.formControl span {
+.errorMessage {
+    font-size: small;
+    color: red;
+}
+.errorTextfield textarea {
+    border-color: red;
+}
+.errorTextfield input {
+    border-color: red;
+}
+
+
+.loginFormError {
+    border: red 1px solid;
+    padding: 5px;
     color: red;
 }

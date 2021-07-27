@@ -1,46 +1,36 @@
 import React from 'react';
 import s from './FromControls.module.css';
 
-const FormControl = (props: any) => {
-    const hasError = meta.touced && meta.error;
+const FormControl = ({ input, meta, cild, ...props }: any) => {
+    const hasError = meta.touched && meta.error;
+    const errorMessage = hasError ? `${meta.error}`: '';
+    const textareaClass = hasError ? `${s.errorTextfield}` : undefined;
 
     return (
-        <div className={s.formControl + '' + (hasError ? s.error : '')}>
+        <div className={textareaClass}>
             <div>
-                <textarea  {...input} {...props}/>
+               {props.children}
             </div>
-            {hasError && <span>{meta.error}</span>}
+            <div className={s.errorBlock}>
+                <span className={s.errorMessage}>{errorMessage}</span>
+            </div>
+            
         </div>
 
     )
 }
 
 
-export const Textarea = ({ input, meta, ...props }: any) => {
-
-    const hasError = meta.touced && meta.error;
-
+export const Textarea = (props: any) => {
+    const {input, meta, child, ...restProps} = props;
     return (
-        <div className={s.formControl + '' + (hasError ? s.error : '')}>
-            <div>
-                <textarea  {...input} {...props}/>
-            </div>
-            {hasError && <span>{meta.error}</span>}
-        </div>
+        <FormControl {...props}><textarea {...input} {...restProps}/></FormControl>
 
     )
 };
-export const Input = ({ input, meta, ...props }: any) => {
-
-    const hasError = meta.touced && meta.error;
-
+export const Input = (props: any) => {
+    const {input, meta, child, ...restProps} = props;
     return (
-        <div className={s.formControl + '' + (hasError ? s.error : '')}>
-            <div>
-                <input  {...input} {...props} />
-            </div>
-            {hasError && <span>{meta.error}</span>}
-        </div>
-
+        <FormControl {...props}><input {...input} {...restProps}/></FormControl>
     )
 };
