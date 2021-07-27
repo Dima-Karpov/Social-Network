@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { authAPI } from '../api/api';
 import { AppStateType } from './redux-store';
@@ -28,7 +29,7 @@ const authReducer = (state: InitStateType = initialState, action: ActionType): I
         case SET_USER_DATA :
             return {
                 ...state,
-                ...action.data,
+                ...action.payload,
                 isAuth: true
             }
         default: 
@@ -36,24 +37,44 @@ const authReducer = (state: InitStateType = initialState, action: ActionType): I
     };
 };
 
-export const setAuthUserData = ( id: number, email: string, login: string) => {
+
+export const setAuthUserData = ( id: number | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
         type: SET_USER_DATA,
-        data: {id, email, login}
+        payload: {id, email, login, isAuth}
     } as const
 };
 
 export const getAuthUserData = (): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        authAPI.mu()
+        authAPI.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let { id, email, login } = response.data.data;
-                    dispatch(setAuthUserData(id, email, login))
+                    dispatch(setAuthUserData(id, email, login, true))
                 }
             })
     }
 };
+
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch<any>) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+        })
+};
+export const logout = () => (dispatch: Dispatch<any>) => {
+    authAPI.logout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false))
+            }
+        })
+};
+
+
 
 
 export default authReducer
