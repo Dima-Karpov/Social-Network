@@ -1,0 +1,312 @@
+[33mcommit bb2b29635a9616bca0916dc33caa4851e5a9fe11[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 12:51:50 2021 +0300
+
+    first commit
+
+[33mcommit e1dfea88d6d034789b2318e7354d3587761ca68d[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 11:46:26 2021 +0300
+
+    'kd'
+
+[33mcommit 5bcd30930b93f39ec8be826560ff3cf8a56873ed[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 11:22:12 2021 +0300
+
+    'profile'
+
+[33mcommit 952ff3914a69504c70d75fe194c89bd8e506bac9[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 11:11:39 2021 +0300
+
+    'header'
+
+[33mcommit 64e4e9eb459c2db038f434824013cf95587f1857[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 11:08:49 2021 +0300
+
+    'messages'
+
+[33mcommit 48d05f03faeb0a2b0a93c0d84cc6e28731e7a86b[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 11:07:07 2021 +0300
+
+    'dialigs'
+
+[33mcommit 8b46c67b1a0f9af66ac95c3ccc5c30e113e6df30[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 11:02:52 2021 +0300
+
+    'valid'
+
+[33mcommit b8600958a7a73f9b10ae08b3e7a21e6d62d452b3[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 11:00:35 2021 +0300
+
+    'redux'
+
+[33mcommit 5a4645cde5dbb350d24c5e3fc80b6a1140d5c933[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 10:49:25 2021 +0300
+
+    'app'
+
+[33mcommit fdf9926f2f93d23696ae8b9420c83828b13fb8f5[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 10:47:47 2021 +0300
+
+    'index'
+
+[33mcommit a8c43d14b400e9cb5bbae93111ef926b3a3a1523[m
+Merge: 40d68723 d077df73
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 09:26:24 2021 +0300
+
+    'of'
+
+[33mcommit 40d68723ec4e44cf8c87ca8c73e20f491f053a9d[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 31 08:36:02 2021 +0300
+
+    'auth-login-summ-error-stop-submit'
+
+[33mcommit d077df7332ae2f6b4e99abd0a2235fba2bf072c6[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue Jul 27 21:45:08 2021 +0300
+
+    Updates
+
+[33mcommit 96b465a042f886668127335086d86c4131a8a788[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue Jul 27 21:39:39 2021 +0300
+
+    'button-log-out'
+
+[33mcommit cf0ce4a574e752b7cd18e5718ec8de371cd2b10d[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue Jul 27 21:16:31 2021 +0300
+
+    'login-implementation'
+
+[33mcommit 7898b689ced9c0e618396fcf4209107cf79fcdde[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue Jul 27 20:17:40 2021 +0300
+
+    'login'
+
+[33mcommit 639eb98ae3710f20f70668bb2437fd50006301e0[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue Jul 27 06:52:47 2021 +0300
+
+    'pakaz-errors'
+
+[33mcommit 26b7825817a1dedbb5d23c188a6bb062afc968a6[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 26 07:23:33 2021 +0300
+
+    'login-error'
+
+[33mcommit 7889899dc359a0256a3bf9a8daf8a438d1472b86[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 26 07:10:34 2021 +0300
+
+    'refactor'
+
+[33mcommit dfbf44db1e00f6e651806355c0d1787584dcc8da[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 26 07:07:12 2021 +0300
+
+    'stule-error'
+
+[33mcommit c1ac1d3e196f8566c55cde2c0b3f802189d60f42[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 26 06:44:54 2021 +0300
+
+    'string'
+
+[33mcommit 1311347c6d3a668fa524a08b961c388f32fbac7e[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 26 06:32:28 2021 +0300
+
+    'validation-thunk'
+
+[33mcommit c42e55d486330c6473fcc40c3e53f758e6d30f33[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 24 10:51:17 2021 +0300
+
+    'types-form-refactor-code'
+
+[33mcommit 3817edbbad79556974128f2c4be4c33b3d8384a2[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 24 09:17:05 2021 +0300
+
+    'redux-form-dialogs'
+
+[33mcommit c722176d66080b65d0675d79fb2fa9254d0945e9[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 17 09:46:31 2021 +0300
+
+    'logit-form-redux'
+
+[33mcommit 0ce126059d0eb2ff7d69450e4c1436c4319de730[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Fri Jul 16 19:07:13 2021 +0300
+
+    'component-Did-update'
+
+[33mcommit 9010e3c1cf39c10cb61e8d7f9a200c04122be6fe[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Thu Jul 15 10:13:58 2021 +0300
+
+    'status'
+
+[33mcommit 39da65eb83615849e91630a1ff30d527b99ad1ba[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue Jul 13 05:50:27 2021 +0300
+
+    'name'
+
+[33mcommit 07caeb9bcbfa2c9461a1408ffd507d1fe26e1f09[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jul 10 18:27:04 2021 +0300
+
+    'profile-info'
+
+[33mcommit 088e98241063fca194285ab19ad24a45b9ddd78f[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 5 05:19:57 2021 +0300
+
+    '.'
+
+[33mcommit b5a8ae340ba4d88d9b670f97819fa4d1c94d15de[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 5 05:13:01 2021 +0300
+
+    'git'
+
+[33mcommit f3c0dc101ae18b2dbb5df4b4524a316b56c07c5a[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 5 05:09:23 2021 +0300
+
+    'ligin-fix'
+
+[33mcommit 163220beb60d2ebbad2a1874e83fa1bcf90d3ae4[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 5 05:03:34 2021 +0300
+
+    'compose-component-type'
+
+[33mcommit 60a6d471754ac1c3e4d4771d6fcc90908e79c29f[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jul 5 04:26:53 2021 +0300
+
+    'compose'
+
+[33mcommit 731da2ad23d0a5b296af1f32aa360ad112965a89[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sun Jul 4 21:21:52 2021 +0300
+
+    'with-redirect'
+
+[33mcommit 989db9bbbc2bc84f658049f012d7b24e397358b0[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jun 28 06:25:16 2021 +0300
+
+    'redirect'
+
+[33mcommit 234b0943321823f432b125607151e61e3acb6975[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Fri Jun 25 18:17:52 2021 +0300
+
+    'thunk'
+
+[33mcommit ba0fbe13186c777f87476ff4888c4b466cc1725c[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Thu Jun 24 18:00:20 2021 +0300
+
+    'thunk-user'
+
+[33mcommit ea3d420728ec913447ca1fb558d6d084402fb9ba[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jun 14 04:37:12 2021 +0300
+
+    'work-on-button-follow-unfollow'
+
+[33mcommit d436f2486b6d05c35b769141343dd03844a05abe[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sun Jun 13 15:55:13 2021 +0300
+
+    'api-in-the-work'
+
+[33mcommit 9596aca4622e93525d3b051896ba997973c2dfeb[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jun 12 14:47:51 2021 +0300
+
+    'follow-unfollow'
+
+[33mcommit 6d45bfe19cfa5b3c832e058c00ca4f824517f568[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jun 12 13:04:09 2021 +0300
+
+    'header-component-and-auth-reducer'
+
+[33mcommit bb7fb643776181be117c0fe3fa8cba736ee88c7f[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue Jun 8 21:06:32 2021 +0300
+
+    'error-correction-wihtRouter'
+
+[33mcommit 32a2df4b4b965a0c5e80e450104a782817f183bb[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon Jun 7 19:56:49 2021 +0300
+
+    'profile-api-ajax-page'
+
+[33mcommit afebada722ed3eb5b0a2bdf010284413bece6dc9[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat Jun 5 10:45:06 2021 +0300
+
+    'change-of-connection'
+
+[33mcommit 79b27d27f01222dfb0e4fb826f159a831707a976[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sun May 30 20:12:48 2021 +0300
+
+    'clon'
+
+[33mcommit e6b5de962b676963998bc1592dba2fe2ef0c3944[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sun May 30 19:37:52 2021 +0300
+
+    'add'
+
+[33mcommit cd3624a434fb3082e1d5c36165a0f5c4c2eb0381[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Tue May 25 21:33:17 2021 +0300
+
+    'forty-ninth'
+
+[33mcommit 9a57c2ccf2557e1837b96f3dcecc7bd09d9f48a9[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Mon May 24 05:46:53 2021 +0300
+
+    'resux-homepage'
+
+[33mcommit 416d010e0a26d6ad8983ff70562e2761947d47be[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sat May 22 08:21:58 2021 +0300
+
+    'material-ui'
+
+[33mcommit 346aff65a8835ce737c14bfb2faab31edd6ac85e[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sun May 9 19:20:36 2021 +0300
+
+    'redux'
+
+[33mcommit ab17e400df6d7f0c5e1a4e1d421d08500fa0c63b[m
+Author: Dima-Karpov <dimka.carpov2013@yandex.ru>
+Date:   Sun May 2 19:26:57 2021 +0300
+
+    first commit
