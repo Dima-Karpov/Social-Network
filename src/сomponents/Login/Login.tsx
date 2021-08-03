@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { login } from '../../redux/auth-reducer';
-import { AppStateType, RootState } from '../../redux/redux-store';
+import { RootState } from '../../redux/redux-store';
 import { required } from '../../utils/validators/validators';
 import { Input } from '../common/FormsControls/FormsControls';
 import s from '../../сomponents/common/FormsControls/FromControls.module.css'
@@ -63,8 +63,16 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div>
                 <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember me
             </div>
-            { props.error  && <div className={s.formSummaryError}>{props.error}</div>}
+
             <div>
+                {props.error && <div className={s.formSummaryError}>{props.error}</div>}
+            </div>
+            
+            
+            <div>
+
+
+
                 <button>Login</button>
             </div>
         </form>
