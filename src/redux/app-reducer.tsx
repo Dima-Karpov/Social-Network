@@ -14,7 +14,7 @@ export type InitialStateType = {
 }
 
 
-type ActionType = ReturnType<typeof setInitilazedSuccess> ;
+type ActionType = ReturnType<typeof initilazedSuccess> ;
 
 
 const appReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -30,12 +30,14 @@ const appReducer = (state: InitialStateType = initialState, action: ActionType):
 };
 
 
-export const setInitilazedSuccess = () => ({type: INITIALIZED_SUCCESS }as const);
+export const initilazedSuccess = () => ({ type: INITIALIZED_SUCCESS } as const);
 
 export const initializedApp = (): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        dispatch(getAuthUserData());
-        dispatch(setInitilazedSuccess());
-
+        let promise = dispatch(getAuthUserData());
+        Promise.all([promise])
+            .then(() => {
+                dispatch(initilazedSuccess());
+            })
     }
 };
