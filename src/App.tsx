@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { Header } from './сomponents/Header/Header';
 import { Music } from './сomponents/Music/Music';
@@ -16,27 +16,33 @@ import Login from './сomponents/Login/Login';
 type AppPropsType = {
 };
 
-const App: React.FC<AppPropsType> = (props) => {
-  return (
-    <div className='app-wrapper'>
-      <HeaderContainer />
-      <Navbar />
-      <div className='app-wrapper-content'>
-        <Route path='/profile/:userId?'
-          render={() =>
-            < ProfileContainer />} />
-        <Route path='/messages'
-          render={() => <Dialogs />} />
-        <Route path='/users'
-          render={() => <UsersComponent />} />
-        <Route path='/login'
-          render={() => <Login />} />
-        <Route path='/news' render={() => <News />} />
-        <Route path='/music' render={() => <Music />} />
-        <Route path='/settings' render={() => <Settings />} />
+class App extends Component {
+  componentDidMount() {
+    this.props.getAuthUserData();
+  };
+  
+  render() {
+    return (
+      <div className='app-wrapper'>
+        <HeaderContainer />
+        <Navbar />
+        <div className='app-wrapper-content'>
+          <Route path='/profile/:userId?'
+            render={() =>
+              < ProfileContainer />} />
+          <Route path='/messages'
+            render={() => <Dialogs />} />
+          <Route path='/users'
+            render={() => <UsersComponent />} />
+          <Route path='/login'
+            render={() => <Login />} />
+          <Route path='/news' render={() => <News />} />
+          <Route path='/music' render={() => <Music />} />
+          <Route path='/settings' render={() => <Settings />} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

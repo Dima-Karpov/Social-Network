@@ -11,9 +11,7 @@ type HeaderApiContainerPropsType = {
 };
 
 class HeaderApiContainer extends React.Component<HeaderApiContainerPropsType> {
-  componentDidMount() {
-    this.props.getAuthUserData();
-  };
+ 
   render() {
     return <Header
       data={this.props.data}
