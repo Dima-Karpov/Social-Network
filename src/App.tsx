@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Header } from './сomponents/Header/Header';
 import { Music } from './сomponents/Music/Music';
 import { Navbar } from './сomponents/Navbar/Navbar';
 import { News } from './сomponents/News/News';
 import { Settings } from './сomponents/Settings/Settings';
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import ProfileContainer from './сomponents/Profile/ProfileContainer';
 import { HeaderContainer } from './сomponents/Header/HeaderContainer';
 import Dialogs from './сomponents/Dialogs/Dialogs';
 import UsersComponent from './сomponents/Users/UsersContainer'
 import Login from './сomponents/Login/Login';
 import { connect } from 'react-redux';
-import { getAuthUserData } from './redux/auth-reducer';
-import { compose } from 'redux';
+import { initializedApp } from './redux/app-reducer';
 
 
 type AppType = {
-  getAuthUserData: () => void
+  initializedApp: () => void
 };
 
 class App extends React.Component<AppType> {
   componentDidMount() {
-    this.props.getAuthUserData();
+    this.props.initializedApp();
   };
 
   render() {
@@ -49,7 +47,5 @@ class App extends React.Component<AppType> {
   }
 }
 
-export default compose(
-  withRouter,
-  connect(null, {getAuthUserData}))(App)
+export default connect(null, {initializedApp})(App)
 
