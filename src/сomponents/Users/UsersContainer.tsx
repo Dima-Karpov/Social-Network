@@ -4,7 +4,6 @@ import { AppStateType } from '../../redux/redux-store';
 import { follow, setCarrentPageAC, toggelInProgress, unfollow, UsersType, getUsersThunkCreator } from '../../redux/users-reducer';
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
-import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
 import { compose } from 'redux';
 
 
@@ -80,5 +79,4 @@ export default compose<React.ComponentType>(
         getUsersThunkCreator,
 
     })),
-    wihtAuthRedirect
 )(UsersComponent)

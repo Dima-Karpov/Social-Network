@@ -12,10 +12,13 @@ import UsersComponent from './сomponents/Users/UsersContainer'
 import Login from './сomponents/Login/Login';
 import { connect } from 'react-redux';
 import { initializedApp } from './redux/app-reducer';
+import { RootState } from './redux/redux-store';
+import { Preloader } from './сomponents/common/preloader/Preloader';
 
 
 type AppType = {
   initializedApp: () => void
+  initialized: boolean
 };
 
 class App extends React.Component<AppType> {
@@ -24,6 +27,9 @@ class App extends React.Component<AppType> {
   };
 
   render() {
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
     return (
       <div className='app-wrapper'>
         <HeaderContainer />
@@ -47,5 +53,9 @@ class App extends React.Component<AppType> {
   }
 }
 
-export default connect(null, {initializedApp})(App)
+const mapStateToProps = (state: RootState) => ({
+  initialized: state.app.initialized
+});
+
+export default connect(mapStateToProps, { initializedApp })(App)
 

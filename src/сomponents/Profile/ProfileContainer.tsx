@@ -25,7 +25,13 @@ type ProfileAPIContainerType = {
 
 class ProfileAPIContainer extends React.Component<ProfileAPIContainerType>{
     componentDidMount() {
-        const userID = this.props.match.params.userId || this.props.authorizedUserId;
+        let userID = this.props.match.params.userId || this.props.authorizedUserId;
+        if (!userID) {
+            userID = this.props.authorizedUserId
+            if (!userID) {
+                this.props.history.push('/login')
+            }
+        };
 
         this.props.getUsersProfile(userID)
         this.props.getStatus(userID)
