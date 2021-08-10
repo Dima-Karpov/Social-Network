@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { AppStateType } from '../../redux/redux-store';
+import { AppStateType, RootState } from '../../redux/redux-store';
 import { follow, setCarrentPageAC, toggelInProgress, unfollow, UsersType, getUsersThunkCreator } from '../../redux/users-reducer';
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
 import { compose } from 'redux';
+import { getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors';
 
 
 export type UsersPageType = {
@@ -60,16 +61,18 @@ class UsersComponent extends React.Component<UsersPageType> {
     };
 };
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+const mapStateToProps = (state: RootState): MapStatePropsType => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        carrentPage: state.usersPage.carrentPage,
-        isFetching: state.usersPage.isFeching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        carrentPage: getTotalUsersCount(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 };
+
+
 export default compose<React.ComponentType>(
     (connect(mapStateToProps, {
         follow,
