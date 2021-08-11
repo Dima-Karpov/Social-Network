@@ -161,11 +161,12 @@ export const toggelInProgress = (isFetching: boolean, userID: number) => {
 
 
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+export const getUsersThunkCreator = (page: number, pageSize: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
 
     return async (dispatch) => {
         dispatch(toggelIsFetching(true));
-        usersAPI.getUsers(currentPage, pageSize)
+        dispatch(setCarrentPageAC(page));
+        usersAPI.getUsers(page, pageSize)
             .then(data => {
                 dispatch(toggelIsFetching(false));
                 dispatch(setUsers(data.items))
