@@ -105,8 +105,8 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             return {
                 ...state,
                 followingInProgress: action.isFetching
-                ? [...state.followingInProgress, action.userID]
-                : state.followingInProgress.filter(id => id !== action.userID)
+                    ? [...state.followingInProgress, action.userID]
+                    : state.followingInProgress.filter(id => id !== action.userID)
             }
         }
 
@@ -204,4 +204,4 @@ export const unFollowThunkCreator = (usersID: number): ThunkAction<Promise<void>
     }
 };
 
-export default usersReducer 
+export default usersReducer
