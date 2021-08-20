@@ -2,7 +2,7 @@ import React from 'react';
 import { ProfileType } from '../../../redux/profile-reducer';
 import { Preloader } from '../../common/preloader/Preloader';
 import s from './ProfileInfo.module.css';
-import { ProfileStatus } from './ProfileStatus';
+import { ProfileStatuWithHooks } from './ProfileStatuWithHooks';
 
 type ProfileInfoPropsType = {
     profile: ProfileType
@@ -22,7 +22,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
             {/* </div> */}
             <div>
                 <img src={props.profile.photos.large} />
-                 <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                 <ProfileStatuWithHooks status={props.status} updateStatus={props.updateStatus} />
 
                 {props.profile.fullName} <br />
                 {props.profile.aboutMe} <br />
