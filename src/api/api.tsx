@@ -3,9 +3,9 @@ import axios from "axios";
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: 'https://social-network.samuraijs.com/api/1.0//',
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': 'f62603e6-eeb0-4d40-822d-9cb8d5beb0d3',
+        'API-KEY': '9e8978ae-0246-4c6d-84c4-bc28bfa5ba72',
     },
 
 });
@@ -17,26 +17,26 @@ export const usersAPI = {
                 return response.data
             })
     },
-    follow(usersID: number) {
-        return instance.post(`follow/${usersID}`)
+    follow(userId: number) {
+        return instance.post(`follow/${userId}`)
     },
-    unfollow(usersID: number) {
-        return instance.delete(`follow/${usersID}`)
+    unfollow(userId: number) {
+        return instance.delete(`follow/${userId}`)
     },
-    getProfile(usersID: number) {
+    getProfile(userId: number) {
         console.warn('Obsolet method. Please profileApi object.');
-        return profileAPI.getProfile(usersID);
+        return profileAPI.getProfile(userId);
     },
 };
 export const profileAPI = {
-    getProfile(usersID: number) {
-        return instance.get(`profile/${usersID}`)
+    getProfile(userId: number) {
+        return instance.get(`profile/${userId}`)
     },
-    getStatus(userID: number){
-        return instance.get(`profile/status/${userID}`)
+    getStatus(userId: number){
+        return instance.get(`profile/status/${userId}`)
     },
     updateStatus(status: string){
-        return instance.put(`profile/status`, {status: status})
+        return instance.put('profile/status', {status})
     },
 };
 

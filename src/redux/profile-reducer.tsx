@@ -100,17 +100,17 @@ export const setStatus = (status: string) => {
 
 
 
-export const getUsersProfile = (userID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+export const getUsersProfile = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        usersAPI.getProfile(userID)
+        usersAPI.getProfile(userId)
             .then(response => {
                dispatch(setUsersProfile(response.data))
             })
     }
 };
-export const getStatus = (userID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
+export const getStatus = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        profileAPI.getStatus(userID)
+        profileAPI.getStatus(userId)
             .then(response => {
                dispatch(setStatus(response.data))
             })

@@ -12,27 +12,37 @@ export const ProfileStatuWithHooks: React.FC<ProfileStatuWithHooksPropsType> = p
         updateStatus
     } = props;
 
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(false);
+    const [newStatus, setStatus] = useState(status);
 
     const activeteEditMode = () => {
         setEditMode(true);
     };
     const deActiveteEditMode = () => {
         setEditMode(false);
+        updateStatus(newStatus);
+    };
+    const onStatusChange = (e: any) => {
+        setStatus(e.currentTarget.value);
     };
 
     return (
         <div>
             {!editMode &&
                 <div>
-                    <span onDoubleClick={activeteEditMode} >
+                    <span style={{color: 'white'}} onDoubleClick={activeteEditMode} >
                         {status || '1234____1234'}
                     </span>
                 </div>
             }
             {editMode &&
                 <div>
-                    <input autoFocus={true} onBlur={deActiveteEditMode} />
+                    <input 
+                    onChange={onStatusChange}
+                    autoFocus={true} 
+                    onBlur={deActiveteEditMode} 
+                    value={newStatus} 
+                    />
                 </div>
             }
         </div>
