@@ -28,6 +28,7 @@ export const UsersFunc = (props: UsersFyncPropsType) => {
                 {pages.map(p => {
                     return (
                         <span
+                        key={p}
                             // @ts-ignore
                             className={props.carrentPage === p && s.selectedPage}
                             onClick={(e) => { props.onPageChanged(p) }}

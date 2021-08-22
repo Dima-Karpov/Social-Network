@@ -10,9 +10,9 @@ export type PostsType = {
 };
 export type InitialStateType = typeof initialState
 
-type ActionType = ReturnType<typeof addPostAC> 
- | ReturnType<typeof setUsersProfile>
- | ReturnType<typeof setStatus>
+type ActionType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof setUsersProfile>
+    | ReturnType<typeof setStatus>
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -32,16 +32,16 @@ const initialState = {
 export type ProfileType = {
     aboutMe: string
     contacts:
-        {
-            github: string
-            vk: string
-            facebook: string
-            instagram: string
-            twitter: string
-            website: string
-            youtube: string
-            mainLink: string
-        }
+    {
+        github: string
+        vk: string
+        facebook: string
+        instagram: string
+        twitter: string
+        website: string
+        youtube: string
+        mainLink: string
+    }
     fullName: string
     lookingForAJob: boolean
     lookingForAJobDescription: string
@@ -104,7 +104,7 @@ export const getUsersProfile = (userId: number): ThunkAction<Promise<void>, AppS
     return async (dispatch) => {
         usersAPI.getProfile(userId)
             .then(response => {
-               dispatch(setUsersProfile(response.data))
+                dispatch(setUsersProfile(response.data))
             })
     }
 };
@@ -112,7 +112,7 @@ export const getStatus = (userId: number): ThunkAction<Promise<void>, AppStateTy
     return async (dispatch) => {
         profileAPI.getStatus(userId)
             .then(response => {
-               dispatch(setStatus(response.data))
+                dispatch(setStatus(response.data))
             })
     }
 };
@@ -120,11 +120,11 @@ export const updateStatus = (status: string): ThunkAction<Promise<void>, AppStat
     return async (dispatch) => {
         profileAPI.updateStatus(status)
             .then(response => {
-                if (response.data.resultCode === 0){
-               dispatch(setStatus(status));
-            }
+                if (response.data.resultCode === 0) {
+                    dispatch(setStatus(status));
+                }
             })
     }
 };
 
-export default profileReducer 
+export default profileReducer
