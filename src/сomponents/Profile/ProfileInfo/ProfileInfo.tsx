@@ -17,12 +17,12 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
     return (
         <div>
             {/* <div > */}
-                {/* <img src='https://nastol.net/wallpaper/big/58/1181383-pole-trava-zelenyy-priroda-nebo-peyzazhi.jpg' ></img> */}
+            {/* <img src='https://nastol.net/wallpaper/big/58/1181383-pole-trava-zelenyy-priroda-nebo-peyzazhi.jpg' ></img> */}
 
             {/* </div> */}
             <div>
                 <img src={props.profile.photos.large} />
-                 <ProfileStatuWithHooks status={props.status} updateStatus={props.updateStatus} />
+                <ProfileStatuWithHooks status={props.status} updateStatus={props.updateStatus} />
 
                 {props.profile.fullName} <br />
                 {props.profile.aboutMe} <br />

@@ -51,3 +51,16 @@ export const authAPI = {
         return instance.delete(`auth/login`)
     },
 };
+
+
+
+import React, {useState} from "react";
+import css from "./Paginator.module.css";
+
+type PaginatorPropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (p: number) => void
+}
+
