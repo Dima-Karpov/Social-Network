@@ -39,16 +39,15 @@ const TOGGEL_IN_FOLLOWING_PROGRESS = 'TOGGEK-IN-PROGRESS';
 
 const initialState = {
     users: [] as Array<UsersType>,
-    pageSize: 10,
-    totalUsersCount: 100,
+    pageSize: 25,
+    totalUsersCount: 2000,
     carrentPage: 1,
     isFeching: false,
-    followingInProgress: [] as Array<number>,
+    followingInProgress: [] as Array<number>
 };
 
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
-
     switch (action.type) {
         case FOLLOW: {
             return {
@@ -85,6 +84,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             }
         }
         case SET_CURRENT_PAGE: {
+            console.log(action)
             return {
                 ...state,
                 carrentPage: action.carrentPage
@@ -93,7 +93,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
         case SET_TOTAL_USER_COUNT: {
             return {
                 ...state,
-                carrentPage: action.count
+                totalUsersCount: action.totalUsersCount
             }
         }
         case TOGGEL_IS_FETCHING: {
@@ -142,7 +142,7 @@ export const setCarrentPageAC = (carrentPage: number) => {
 export const setTotalUserCount = (totalUsersCount: number) => {
     return {
         type: SET_TOTAL_USER_COUNT,
-        count: totalUsersCount,
+        totalUsersCount,
     } as const
 }
 export const toggelIsFetching = (isFetching: boolean) => {
@@ -162,15 +162,14 @@ export const toggelInProgress = (isFetching: boolean, userID: number) => {
 
 
 export const getUsersThunkCreator = (page: number, pageSize: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
-
     return async (dispatch) => {
         dispatch(toggelIsFetching(true));
-        dispatch(setCarrentPageAC(page));
         usersAPI.getUsers(page, pageSize)
             .then(data => {
                 dispatch(toggelIsFetching(false));
                 dispatch(setUsers(data.items))
-                dispatch(setTotalUserCount(data.totalCount))
+                dispatch(setCarrentPageAC(page))
+                // dispatch(setTotalUserCount(data.totalUsersCount))
             })
     }
 

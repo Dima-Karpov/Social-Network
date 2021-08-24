@@ -3,6 +3,7 @@ import { UsersType } from '../../redux/users-reducer';
 import s from './users.module.css'
 import userPhoto from '..//..//assets/images/ava.png'
 import { NavLink } from 'react-router-dom';
+import { Paginator } from '../common/Paginator/Paginator';
 
 type UsersFyncPropsType = {
     users: Array<UsersType>
@@ -17,25 +18,11 @@ type UsersFyncPropsType = {
 
 export const UsersFunc = (props: UsersFyncPropsType) => {
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    const pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
     return (
         <>
-            <div className={s.pageUsers}>
-                {pages.map(p => {
-                    return (
-                        <span
-                        key={p}
-                            // @ts-ignore
-                            className={props.carrentPage === p && s.selectedPage}
-                            onClick={(e) => { props.onPageChanged(p) }}
-                        >{p}</span>
-                    )
-                })}
-            </div>
+            <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}
+                currentPage={props.carrentPage} onPageChanged={props.onPageChanged} />
+                
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
@@ -75,4 +62,4 @@ export const UsersFunc = (props: UsersFyncPropsType) => {
         </>
 
     )
-} 
+}

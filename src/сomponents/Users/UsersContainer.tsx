@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { RootState } from '../../redux/redux-store';
+import { AppStateType, RootState } from '../../redux/redux-store';
 import { follow, setCarrentPageAC, toggelInProgress, unfollow, UsersType, getUsersThunkCreator } from '../../redux/users-reducer';
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
 import { compose } from 'redux';
-import { getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors';
+import { getCarrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors';
 
 
 export type UsersPageType = {
@@ -66,7 +66,7 @@ const mapStateToProps = (state: RootState): MapStatePropsType => {
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
-        carrentPage: getTotalUsersCount(state),
+        carrentPage: getCarrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
     }
