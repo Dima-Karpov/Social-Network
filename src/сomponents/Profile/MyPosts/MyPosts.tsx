@@ -20,7 +20,7 @@ type MapDispatchPropsType = {
 
 export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
 
-export const MyPosts = (props: MyPostsPropsType) => {
+export const MyPosts: React.FC<MyPostsPropsType> = React.memo ((props) => {
 
     const postsElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} key={p.id} />);
 
@@ -44,7 +44,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
             </div>
         </div>
     );
-};
+});
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
