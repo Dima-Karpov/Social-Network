@@ -1,9 +1,6 @@
 import React from 'react';
 import profileReducer, { addPostAC, deletPost} from "../profile-reducer";
 
-
-
-
 let state = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: '12'},
@@ -12,7 +9,6 @@ let state = {
         {id: 4, message: 'Dada', likesCount: '11'},
     ],
 };
-
 
 test('length of post should be increment', () => {
     // test data
@@ -24,7 +20,6 @@ test('length of post should be increment', () => {
     // expectation
     expect(newState.posts.length).toBe(5);
 });
-
 test('message of new post should be correct', () => {
     // test data
     const action = addPostAC("it-kamasutra.com");
