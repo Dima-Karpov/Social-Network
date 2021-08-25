@@ -13,10 +13,12 @@ export type InitialStateType = typeof initialState
 type ActionType = ReturnType<typeof addPostAC>
     | ReturnType<typeof setUsersProfile>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof deletPost>
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
-const SET_STATUS = 'SET-STATUS'
+const SET_STATUS = 'SET-STATUS';
+const DELET_POST = 'DELET-POST';
 
 
 const initialState = {
@@ -74,6 +76,11 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
                 ...state,
                 status: action.status
             }
+        case DELET_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
+            }
         default:
             return state;
     }
@@ -95,6 +102,12 @@ export const setStatus = (status: string) => {
     return {
         type: SET_STATUS,
         status,
+    } as const
+}
+export const deletPost = (postId: number) => {
+    return {
+        type: DELET_POST,
+        postId,
     } as const
 }
 
