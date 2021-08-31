@@ -8,4 +8,4 @@ export const DialogItem = (props: any) => (
         <NavLink to={'/messages/' + props.id}>{props.name}
         </NavLink>
     </div>
-); 
+);
