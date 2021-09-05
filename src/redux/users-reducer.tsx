@@ -1,5 +1,6 @@
 import { ThunkAction } from 'redux-thunk'
 import { usersAPI } from '../api/api';
+import { updateObjectInArray } from '../utils/helpers/object-helpers';
 import { AppStateType } from './redux-store';
 
 type PhotosType = {
@@ -52,29 +53,13 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
         case FOLLOW: {
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userID) {
-                        return {
-                            ...u,
-                            followed: true
-                        }
-                    }
-                    return u
-                })
+                users: updateObjectInArray(state.users, action.userID, 'id', { followed: true })
             }
         }
         case UNFOLLOW: {
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userID) {
-                        return {
-                            ...u,
-                            followed: false
-                        }
-                    }
-                    return u
-                })
+                users: updateObjectInArray(state.users, action.userID, 'id', { followed: false })
             }
         }
         case SET_USERS: {
@@ -164,42 +149,37 @@ export const toggelInProgress = (isFetching: boolean, userID: number) => {
 export const getUsersThunkCreator = (page: number, pageSize: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
         dispatch(toggelIsFetching(true));
-        usersAPI.getUsers(page, pageSize)
-            .then(data => {
-                dispatch(toggelIsFetching(false));
-                dispatch(setUsers(data.items))
-                dispatch(setCarrentPageAC(page))
-                // dispatch(setTotalUserCount(data.totalUsersCount))
-            })
+        let data = await usersAPI.getUsers(page, pageSize);
+        dispatch(toggelIsFetching(false));
+        dispatch(setUsers(data.items))
+        dispatch(setCarrentPageAC(page))
     }
 
 };
 
-export const followThunkCreator = (usersID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
 
+const followUnfollowFlow = async (dispatch: any, usersID: number, apiMethod: any, actionCreator: any) => {
+    dispatch(toggelInProgress(true, usersID));
+    let response = await apiMethod(usersID);
+    if (response.data.resultCode === 0) {
+        dispatch(actionCreator(usersID));
+    }
+    dispatch(toggelInProgress(false, usersID));
+};
+
+export const followThunkCreator = (usersID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        dispatch(toggelInProgress(true, usersID));
-        usersAPI.follow(usersID)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(follow(usersID));
-                }
-                dispatch(toggelInProgress(false, usersID));
-            })
+        let apiMethod = usersAPI.follow.bind(usersAPI);
+        let actionCreator = follow;
+        followUnfollowFlow(dispatch, usersID, apiMethod, actionCreator)
     }
 };
 
 export const unFollowThunkCreator = (usersID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
-
     return async (dispatch) => {
-        dispatch(toggelInProgress(true, usersID));
-        usersAPI.unfollow(usersID)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(unfollow(usersID));
-                }
-                dispatch(toggelInProgress(false, usersID));
-            })
+        let apiMethod = usersAPI.unfollow.bind(usersAPI);
+        let actionCreator = unfollow;
+        followUnfollowFlow(dispatch, usersID, apiMethod, actionCreator)
     }
 };
 
