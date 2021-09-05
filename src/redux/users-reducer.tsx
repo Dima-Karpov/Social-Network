@@ -158,28 +158,25 @@ export const getUsersThunkCreator = (page: number, pageSize: number): ThunkActio
 };
 
 
-const followUnfollowFlow = async (dispatch: any, usersID: number, apiMethod: any, actionCreator: any) => {
-    dispatch(toggelInProgress(true, usersID));
-    let response = await apiMethod(usersID);
-    if (response.data.resultCode === 0) {
-        dispatch(actionCreator(usersID));
-    }
-    dispatch(toggelInProgress(false, usersID));
-};
-
 export const followThunkCreator = (usersID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        let apiMethod = usersAPI.follow.bind(usersAPI);
-        let actionCreator = follow;
-        followUnfollowFlow(dispatch, usersID, apiMethod, actionCreator)
+        dispatch(toggelInProgress(true, usersID));
+        let response = await usersAPI.follow(usersID);
+        if (response.data.resultCode === 0) {
+            dispatch(follow(usersID));
+        }
+        dispatch(toggelInProgress(false, usersID));
     }
 };
 
 export const unFollowThunkCreator = (usersID: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        let apiMethod = usersAPI.unfollow.bind(usersAPI);
-        let actionCreator = unfollow;
-        followUnfollowFlow(dispatch, usersID, apiMethod, actionCreator)
+        dispatch(toggelInProgress(true, usersID));
+        let response = await usersAPI.unfollow(usersID);
+        if (response.data.resultCode === 0) {
+            dispatch(unfollow(usersID));
+        }
+        dispatch(toggelInProgress(false, usersID));
     }
 };
 

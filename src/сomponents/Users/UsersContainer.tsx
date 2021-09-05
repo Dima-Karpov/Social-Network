@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { AppStateType, RootState } from '../../redux/redux-store';
-import { follow, setCarrentPageAC, toggelInProgress, unfollow, UsersType, getUsersThunkCreator } from '../../redux/users-reducer';
+import { RootState } from '../../redux/redux-store';
+import { setCarrentPageAC, toggelInProgress, UsersType, getUsersThunkCreator, followThunkCreator, unFollowThunkCreator } from '../../redux/users-reducer';
 import { UsersFunc } from './Users';
 import { Preloader } from '../common/preloader/Preloader';
 import { compose } from 'redux';
@@ -10,8 +10,8 @@ import { getCarrentPage, getFollowingInProgress, getIsFetching, getPageSize, get
 
 export type UsersPageType = {
     users: Array<UsersType>
-    follow: (usersID: number) => void
-    unfollow: (usersID: number) => void
+    followThunkCreator: (usersID: number) => void
+    unFollowThunkCreator: (usersID: number) => void
     setCarrentPage: (carrentPage: number) => void
     toggelInProgress: (isFetching: boolean, userID: number) => void
     totalUsersCount: number
@@ -50,8 +50,8 @@ class UsersComponent extends React.Component<UsersPageType> {
                     pageSize={this.props.pageSize}
                     onPageChanged={this.onPageChanged}
                     users={this.props.users}
-                    unfollow={this.props.unfollow}
-                    follow={this.props.follow}
+                    unfollow={this.props.unFollowThunkCreator}
+                    follow={this.props.followThunkCreator}
                     carrentPage={this.props.carrentPage}
                     followingInProgress={this.props.followingInProgress}
 
@@ -75,11 +75,11 @@ const mapStateToProps = (state: RootState): MapStatePropsType => {
 
 export default compose<React.ComponentType>(
     (connect(mapStateToProps, {
-        follow,
-        unfollow,
+        followThunkCreator,
+        unFollowThunkCreator,
         setCarrentPage: setCarrentPageAC,
         toggelInProgress,
         getUsersThunkCreator,
 
     })),
-)(UsersComponent)
+)(UsersComponent);
