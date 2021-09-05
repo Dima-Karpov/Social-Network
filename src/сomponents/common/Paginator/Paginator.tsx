@@ -8,13 +8,18 @@ type PaginatorPropsType = {
     onPageChanged: (p: number) => void
 }
 
-export const Paginator = (props: PaginatorPropsType) => {
+export const Paginator: React.FC<PaginatorPropsType> = React.memo(props => {
 
-    console.log('pga', props.currentPage)
+    const {
+        totalUsersCount,
+        pageSize,
+        currentPage,
+        onPageChanged,
+    } = props;
 
     let portionSize = 20
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesCount = Math.ceil(totalUsersCount / pageSize)
     let pages = []
     for (let x = 1; x <= pagesCount; x++) {
         pages.push(x)
@@ -35,9 +40,9 @@ export const Paginator = (props: PaginatorPropsType) => {
             .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map(p => {
                 return <span key={p} style={{ display: 'alignItems', marginLeft: '5px' }}
-                    className={props.currentPage === p ? s.selectedPage : ''}
+                    className={currentPage === p ? s.selectedPage : ''}
                     onClick={(e) => {
-                        props.onPageChanged(p)
+                        onPageChanged(p)
                     }}>{p} </span>
             })}
 
@@ -47,4 +52,4 @@ export const Paginator = (props: PaginatorPropsType) => {
 
     </div>
 
-}
+});
