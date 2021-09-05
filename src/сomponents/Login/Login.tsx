@@ -5,27 +5,32 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { login } from '../../redux/auth-reducer';
 import { RootState } from '../../redux/redux-store';
 import { required } from '../../utils/validators/validators';
-import { Input } from '../common/FormsControls/FormsControls';
+import { createField, Input } from '../common/FormsControls/FormsControls';
 import s from '../../сomponents/common/FormsControls/FromControls.module.css'
 
 type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
-}
+};
 
 type LoginPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void
     isAuth: boolean
-}
+};
 
 
-const Login = (props: LoginPropsType) => {
+const Login: React.FC<LoginPropsType> = React.memo((props) => {
+
+    const {
+        login,
+        isAuth,
+    } = props;
 
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe)
     };
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'} />
     };
 
@@ -35,49 +40,32 @@ const Login = (props: LoginPropsType) => {
             <LoginReduxForn onSubmit={onSubmit} />
         </div>
     )
-};
+});
 
 
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = React.memo((props) => {
+
+    const {
+        handleSubmit,
+        error
+    } = props
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
+            {createField('Email', 'email', [required], Input)}
+            {createField('Password', 'password', [required], Input, { type: 'password' })}
+            {createField('', 'rememberMe', [], Input, { type: 'checkbox' }, 'remember me')}
             <div>
-                <Field
-                    placeholder={'Email'}
-                    name={'email'}
-                    component={Input}
-                    validate={[required]}
-                />
+                {error && <div className={s.formSummaryError}>{error}</div>}
             </div>
             <div>
-                <Field
-                    placeholder={'Password'}
-                    name={'password'}
-                    component={Input}
-                    validate={[required]}
-                    type={'password'}
-                />
-            </div>
-            <div>
-                <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember me
-            </div>
-
-            <div>
-                {props.error && <div className={s.formSummaryError}>{props.error}</div>}
-            </div>
-            
-            
-            <div>
-
-
 
                 <button>Login</button>
             </div>
         </form>
     )
-}
+})
 
 
 const LoginReduxForn = reduxForm<FormDataType>({

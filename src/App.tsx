@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import { Music } from './сomponents/Music/Music';
 import { Navbar } from './сomponents/Navbar/Navbar';
