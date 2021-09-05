@@ -8,7 +8,7 @@ import { stopSubmit } from 'redux-form'
 
 type ActionType = ReturnType<typeof setAuthUserData>
 
-const SET_USER_DATA = 'SET-USER-DATA';
+const SET_USER_DATA = 'social-network/auth/SET-USER-DATA';
 
 export type InitStateType = {
     id: number | null,
@@ -48,13 +48,12 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 
 export const getAuthUserData = (): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        authAPI.me()
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    let { id, email, login } = response.data.data;
-                    dispatch(setAuthUserData(id, email, login, true))
-                }
-            })
+        let response = await authAPI.me()
+        if (response.data.resultCode === 0) {
+            let { id, email, login } = response.data.data;
+            dispatch(setAuthUserData(id, email, login, true))
+        }
+
     }
 };
 
