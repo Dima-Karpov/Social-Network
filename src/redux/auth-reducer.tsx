@@ -57,24 +57,21 @@ export const getAuthUserData = (): ThunkAction<Promise<void>, AppStateType, unkn
     }
 };
 
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch<any>) => {
-    authAPI.login(email, password, rememberMe)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserData())
-            } else {
-                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Incorrectly entered email or passwordr';
-                dispatch(stopSubmit('login', { _error: message }));
-            }
-        })
+export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: Dispatch<any>) => {
+    let response = await authAPI.login(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Incorrectly entered email or passwordr';
+        dispatch(stopSubmit('login', { _error: message }));
+    }
 };
-export const logout = () => (dispatch: Dispatch<any>) => {
-    authAPI.logout()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null, false))
-            }
-        })
+export const logout = () => async (dispatch: Dispatch<any>) => {
+    let response = await authAPI.logout()
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false))
+    }
+
 };
 
 
