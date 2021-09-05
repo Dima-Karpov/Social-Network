@@ -109,34 +109,29 @@ export const deletPost = (postId: number) => {
         type: DELET_POST,
         postId,
     } as const
-}
+};
 
 
 
 export const getUsersProfile = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        usersAPI.getProfile(userId)
-            .then(response => {
-                dispatch(setUsersProfile(response.data))
-            })
+        let response = await usersAPI.getProfile(userId);
+        dispatch(setUsersProfile(response.data))
+
     }
 };
 export const getStatus = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        profileAPI.getStatus(userId)
-            .then(response => {
+        let response = await profileAPI.getStatus(userId);
                 dispatch(setStatus(response.data))
-            })
     }
 };
 export const updateStatus = (status: string): ThunkAction<Promise<void>, AppStateType, unknown, ActionType> => {
     return async (dispatch) => {
-        profileAPI.updateStatus(status)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setStatus(status));
-                }
-            })
+        let response = await profileAPI.updateStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
     }
 };
 
