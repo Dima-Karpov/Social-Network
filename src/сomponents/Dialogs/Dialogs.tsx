@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent } from 'react';
+import React from 'react';
 import { DialogsType, MessagesType, sendMessageC } from '../../redux/dialogs-reduser';
 import { DialogItem } from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { Dispatch, compose } from 'redux';
 import { AppStateType } from '../../redux/redux-store';
 import { wihtAuthRedirect } from '../../hoc/wihtAuthRedirect';
-import { Field, reduxForm } from 'redux-form';
 import { AddMessageFormRedux } from './AddMessageForm';
 
 export type DialogsPageType = {
@@ -33,7 +32,6 @@ const Dialogs = (props: DialogsPropsType) => {
     const dialogsElement = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id} />);
     const messagesElement = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id} />);
     const newMessageBody = props.dialogsPage.newMessageBody;
-
 
     const addNewMessage = (values: any) => {
         props.sendMessage(values.newMessageBody)
