@@ -40,7 +40,7 @@ const TOGGEL_IN_FOLLOWING_PROGRESS = 'TOGGEK-IN-PROGRESS';
 
 const initialState = {
     users: [] as Array<UsersType>,
-    pageSize: 25,
+    pageSize: 20,
     totalUsersCount: 2000,
     carrentPage: 1,
     isFeching: false,

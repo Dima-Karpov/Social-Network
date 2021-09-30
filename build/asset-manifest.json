@@ -1,23 +1,36 @@
 {
   "files": {
-    "main.css": "/Social-network/static/css/main.e254b73e.chunk.css",
-    "main.js": "/Social-network/static/js/main.d8fa4dc8.chunk.js",
-    "main.js.map": "/Social-network/static/js/main.d8fa4dc8.chunk.js.map",
-    "runtime-main.js": "/Social-network/static/js/runtime-main.b0f1983b.js",
-    "runtime-main.js.map": "/Social-network/static/js/runtime-main.b0f1983b.js.map",
-    "static/js/2.85c57f68.chunk.js": "/Social-network/static/js/2.85c57f68.chunk.js",
-    "static/js/2.85c57f68.chunk.js.map": "/Social-network/static/js/2.85c57f68.chunk.js.map",
-    "static/js/3.3771fbc8.chunk.js": "/Social-network/static/js/3.3771fbc8.chunk.js",
-    "static/js/3.3771fbc8.chunk.js.map": "/Social-network/static/js/3.3771fbc8.chunk.js.map",
-    "index.html": "/Social-network/index.html",
-    "static/css/main.e254b73e.chunk.css.map": "/Social-network/static/css/main.e254b73e.chunk.css.map",
-    "static/js/2.85c57f68.chunk.js.LICENSE.txt": "/Social-network/static/js/2.85c57f68.chunk.js.LICENSE.txt",
-    "static/media/loading.aa61cc63.svg": "/Social-network/static/media/loading.aa61cc63.svg"
+    "main.css": "/Dima-Karpov/Social-network/static/css/main.8307aba5.chunk.css",
+    "main.js": "/Dima-Karpov/Social-network/static/js/main.71d58faf.chunk.js",
+    "main.js.map": "/Dima-Karpov/Social-network/static/js/main.71d58faf.chunk.js.map",
+    "runtime-main.js": "/Dima-Karpov/Social-network/static/js/runtime-main.ef17267e.js",
+    "runtime-main.js.map": "/Dima-Karpov/Social-network/static/js/runtime-main.ef17267e.js.map",
+    "static/js/2.fd5b7c8e.chunk.js": "/Dima-Karpov/Social-network/static/js/2.fd5b7c8e.chunk.js",
+    "static/js/2.fd5b7c8e.chunk.js.map": "/Dima-Karpov/Social-network/static/js/2.fd5b7c8e.chunk.js.map",
+    "static/css/3.516056bd.chunk.css": "/Dima-Karpov/Social-network/static/css/3.516056bd.chunk.css",
+    "static/js/3.31b605e9.chunk.js": "/Dima-Karpov/Social-network/static/js/3.31b605e9.chunk.js",
+    "static/js/3.31b605e9.chunk.js.map": "/Dima-Karpov/Social-network/static/js/3.31b605e9.chunk.js.map",
+    "static/css/4.cf23190d.chunk.css": "/Dima-Karpov/Social-network/static/css/4.cf23190d.chunk.css",
+    "static/js/4.bcf0c055.chunk.js": "/Dima-Karpov/Social-network/static/js/4.bcf0c055.chunk.js",
+    "static/js/4.bcf0c055.chunk.js.map": "/Dima-Karpov/Social-network/static/js/4.bcf0c055.chunk.js.map",
+    "static/css/5.dc69ed68.chunk.css": "/Dima-Karpov/Social-network/static/css/5.dc69ed68.chunk.css",
+    "static/js/5.21c2853f.chunk.js": "/Dima-Karpov/Social-network/static/js/5.21c2853f.chunk.js",
+    "static/js/5.21c2853f.chunk.js.map": "/Dima-Karpov/Social-network/static/js/5.21c2853f.chunk.js.map",
+    "static/js/6.974ec015.chunk.js": "/Dima-Karpov/Social-network/static/js/6.974ec015.chunk.js",
+    "static/js/6.974ec015.chunk.js.map": "/Dima-Karpov/Social-network/static/js/6.974ec015.chunk.js.map",
+    "index.html": "/Dima-Karpov/Social-network/index.html",
+    "static/css/3.516056bd.chunk.css.map": "/Dima-Karpov/Social-network/static/css/3.516056bd.chunk.css.map",
+    "static/css/4.cf23190d.chunk.css.map": "/Dima-Karpov/Social-network/static/css/4.cf23190d.chunk.css.map",
+    "static/css/5.dc69ed68.chunk.css.map": "/Dima-Karpov/Social-network/static/css/5.dc69ed68.chunk.css.map",
+    "static/css/main.8307aba5.chunk.css.map": "/Dima-Karpov/Social-network/static/css/main.8307aba5.chunk.css.map",
+    "static/js/2.fd5b7c8e.chunk.js.LICENSE.txt": "/Dima-Karpov/Social-network/static/js/2.fd5b7c8e.chunk.js.LICENSE.txt",
+    "static/media/ava.6e3a53f0.png": "/Dima-Karpov/Social-network/static/media/ava.6e3a53f0.png",
+    "static/media/loading.bb85922c.svg": "/Dima-Karpov/Social-network/static/media/loading.bb85922c.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b0f1983b.js",
-    "static/js/2.85c57f68.chunk.js",
-    "static/css/main.e254b73e.chunk.css",
-    "static/js/main.d8fa4dc8.chunk.js"
+    "static/js/runtime-main.ef17267e.js",
+    "static/js/2.fd5b7c8e.chunk.js",
+    "static/css/main.8307aba5.chunk.css",
+    "static/js/main.71d58faf.chunk.js"
   ]
 }

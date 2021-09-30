@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import { Music } from './сomponents/Music/Music';
 import { Navbar } from './сomponents/Navbar/Navbar';
 import { News } from './сomponents/News/News';
 import { Settings } from './сomponents/Settings/Settings';
-import { BrowserRouter, Route } from 'react-router-dom';
-import ProfileContainer from './сomponents/Profile/ProfileContainer';
+import {  HashRouter, Route } from 'react-router-dom';
 import { HeaderContainer } from './сomponents/Header/HeaderContainer';
-import Dialogs from './сomponents/Dialogs/Dialogs';
-import UsersComponent from './сomponents/Users/UsersContainer'
 import Login from './сomponents/Login/Login';
 import { connect } from 'react-redux';
 import { initializedApp } from './redux/app-reducer';
 import { RootState, store } from './redux/redux-store';
 import { Preloader } from './сomponents/common/preloader/Preloader';
 import { Provider } from 'react-redux'
+
+const ProfileContainer = React.lazy(() => import('./сomponents/Profile/ProfileContainer'));
+const Dialogs = React.lazy(() => import('./сomponents/Dialogs/Dialogs'));
+const UsersComponent = React.lazy(() => import('./сomponents/Users/UsersContainer'));
 
 
 type AppType = {
@@ -36,20 +37,25 @@ class App extends React.Component<AppType> {
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
+
+        <Suspense fallback={<Preloader />}>
           <Route path='/profile/:userId?'
-            render={() =>
-              < ProfileContainer />} />
+            render={() => < ProfileContainer /> }/>
           <Route path='/messages'
-            render={() => <Dialogs />} />
+            render={() => <Dialogs />}/>
           <Route path='/users'
             render={() => <UsersComponent />} />
+          </Suspense>
+
+
+
           <Route path='/login'
             render={() => <Login />} />
           <Route path='/news' render={() => <News />} />
           <Route path='/music' render={() => <Music />} />
           <Route path='/settings' render={() => <Settings />} />
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 }
@@ -62,11 +68,11 @@ let AppContainer = connect(mapStateToProps, { initializedApp })(App);
 
 export const SamuraiJSApp = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <AppContainer />
       </Provider >
-    </BrowserRouter>
+    </HashRouter>
   )
 };
 
